@@ -2,7 +2,7 @@ import { configureStore } from '@reduxjs/toolkit';
 
 const initialState = {
   todos:[],
-  editingTodoId: null
+  editingId: null
 };
 
 export const setEditingId = id => ({
@@ -20,12 +20,17 @@ export const removeTodo = id => ({
   payload: id
 });
 
+export const setTodos = todos => ({
+  type: 'SET_TODOS',
+  payload: todos
+});
+
 const reducer = ( state = initialState, action ) => {
   switch(action.type) {
     case 'SET_EDITING_ID':
       return {
         ...state,
-        editingTodoId: action.payload
+        editingId: action.payload
       };
     case 'ADD_TODO':
       return {
@@ -40,9 +45,14 @@ const reducer = ( state = initialState, action ) => {
         ...state,
         todos: newTodos
       };
+    case 'SET_TODOS':
+      return {
+        ...state,
+        todos: action.payload
+      };
     default:
       return state;
   }
 };
 
-export default configureStore(reducer);
+export default configureStore({ reducer });
