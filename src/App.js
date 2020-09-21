@@ -1,5 +1,9 @@
 import React from 'react';
-import { setEditingId, setTodos as setTodosAction } from './app/store';
+import { 
+  setEditingId, 
+  setTodos as setTodosAction,
+  setUser as setUserAction
+ } from './app/store';
 import { connect } from 'react-redux';
 import {
   BrowserRouter as Router,
@@ -13,6 +17,7 @@ import Todos from './Todos';
 class App extends React.Component {
   componentDidMount() {
     this.getPosts();
+    this.getUser();
   }
 
   getPosts() {
@@ -25,6 +30,18 @@ class App extends React.Component {
     const { setTodos } = this.props;
     const newTodos = [...todos];
     setTodos(newTodos);
+  }
+
+  getUser() {
+    fetch('http://localhost:3000/users')
+      .then( response => response.json() )
+      .then( json => this.updateUser(json) )
+  }
+
+  updateUser( user ) {
+    const { setUser } = this.props;
+    const newUser = user;
+    setUser(newUser);
   }
 
   render() {
@@ -55,6 +72,7 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = dispatch => ({
 	editId: id => dispatch(setEditingId(id)),
 	setTodos: todos => dispatch(setTodosAction(todos)),
+	setUser: user => dispatch(setUserAction(user)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);
