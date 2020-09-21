@@ -21,7 +21,7 @@ export const removeTodo = id => ({
 });
 
 export const setTodos = todos => ({
-  type: 'SET_TODOS',
+  type: 'SET_TODOS',
   payload: todos
 });
 
