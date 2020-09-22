@@ -13,6 +13,8 @@ import {
 } from "react-router-dom";
 import Home from './Home';
 import Todos from './Todos';
+import CreateTodo from './CreateTodo';
+import { PlusCircleFilled } from '@ant-design/icons';
 
 class App extends React.Component {
   componentDidMount() {
@@ -49,12 +51,18 @@ class App extends React.Component {
     <Router>
       <Link to="/">Home</Link>
       <Link to="/todos">Todos</Link>
+      <Link to="/add">
+        <PlusCircleFilled />
+      </Link>
 
     {/* A <Switch> looks through its children <Route>s and
       renders the first one that matches the current URL. */}
       <Switch>
         <Route path="/todos">
           <Todos />
+        </Route>
+        <Route path="/add">
+          <CreateTodo />
         </Route>
         <Route path="/">
           <Home />
