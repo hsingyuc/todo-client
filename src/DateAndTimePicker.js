@@ -1,7 +1,7 @@
 import React from 'react';
 import { DatePicker } from 'antd';
 
-export default class StartAndEndDatePicker extends React.Component {
+export default class DateAndTimePicker extends React.Component {
 	constructor( props) {
 		super( props );
 		this.state = {
@@ -17,7 +17,11 @@ export default class StartAndEndDatePicker extends React.Component {
 		const { RangePicker } = DatePicker;
 
 		return(
-			<RangePicker onChange={ dates => this.handleDateClick( dates ) } />
+			<RangePicker
+				showTime={{ format: 'HH:mm' }}
+				format="YYYY-MM-DD HH:mm"
+				onChange={ dates => this.handleDateClick( dates ) }
+			/>
 		);
 	}
 }
