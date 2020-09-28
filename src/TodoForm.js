@@ -45,7 +45,7 @@ class TodoForm extends React.Component {
 							<Category onChange={category=>this.setState({category})}/>
 						</Form.Item>
 						<Form.Item>
-							<Priority />
+							<Priority onChange={priority=>this.setState({priority})}/>
 						</Form.Item>
 						<Form.Item>
 							<Task />
