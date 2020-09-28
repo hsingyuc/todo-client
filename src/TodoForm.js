@@ -42,7 +42,7 @@ class TodoForm extends React.Component {
 				<Form method='post' name='forminfo' onFinish={this.handleSubmit}>
 					<Space direction="vertical">
 						<Form.Item>
-							<Category />
+							<Category onChange={category=>this.setState({category})}/>
 						</Form.Item>
 						<Form.Item>
 							<Priority />
