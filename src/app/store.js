@@ -13,7 +13,13 @@ export const setEditingId = id => ({
 
 export const addTodo = todo => ({
   type: 'ADD_TODO',
-  payload: todo
+  payload: {
+    category: todo.category,
+    priority: todo.priority,
+    task: todo.task,
+    datesAndTime: todo.datesAndTime,
+    attachments: todo.attachments
+  }
 });
 
 export const removeTodo = id => ({
