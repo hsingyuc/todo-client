@@ -9,16 +9,37 @@ import { addTodo as addTodoAction } from './app/store';
 import { connect } from 'react-redux';
 
 class TodoForm extends React.Component {
-	createTodo(todo) {
+	constructor( props ) {
+		super( props );
+		this.state = {
+			category: '',
+			priority: '',
+			task: '',
+			datesAndTime: '',
+			attachments: []
+		}
+
+		this.handleSubmit = this.handleSubmit.bind(this);
+	}
+
+	handleSubmit() {
 		const { addTodo } = this.props;
-		addTodo(todo);
+		const { category, priority, task, datesAndTime, attachments } = this.state;
+		const newTodo = {
+			category,
+			priority,
+			task,
+			datesAndTime,
+			attachments
+		};
+ 		addTodo( newTodo );
 	}
 
 	render() {
 		return(
 			<>
 				<h1>Add</h1>
-				<Form>
+				<Form method='post' name='forminfo' onFinish={this.handleSubmit}>
 					<Space direction="vertical">
 						<Form.Item>
 							<Category />
@@ -36,8 +57,8 @@ class TodoForm extends React.Component {
 							<Attachments />
 						</Form.Item>
 						<Form.Item>
-							<Button type="link" htmlType="submit" onClick={todo=>this.createTodo(todo)}>
-								Save
+							<Button type="submit" htmlType="submit">
+								Save	
 							</Button>
 						</Form.Item>
 					</Space>
