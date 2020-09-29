@@ -51,7 +51,7 @@ class TodoForm extends React.Component {
 							<Task onChange={task=>this.setState({task})}/>
 						</Form.Item>
 						<Form.Item>
-							<DateAndTimePicker />
+							<DateAndTimePicker onChange={datesAndTime=>this.setState({datesAndTime})}/>
 						</Form.Item>
 						<Form.Item>
 							<Attachments />

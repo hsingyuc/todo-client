@@ -5,12 +5,14 @@ export default class DateAndTimePicker extends React.Component {
 	constructor( props) {
 		super( props );
 		this.state = {
-			dates: []
+			datesAndTime: []
 		}
 	}
 
-	handleDateClick( dates) {
-		this.setState( { dates } );
+	handleDateClick( datesAndTime) {
+		const { onChange } = this.props;
+		this.setState( { datesAndTime } );
+		onChange(datesAndTime);
 	}
 
 	render() {
@@ -20,7 +22,7 @@ export default class DateAndTimePicker extends React.Component {
 			<RangePicker
 				showTime={{ format: 'HH:mm' }}
 				format="YYYY-MM-DD HH:mm"
-				onChange={ dates => this.handleDateClick( dates ) }
+				onChange={ datesAndTime => this.handleDateClick( datesAndTime ) }
 			/>
 		);
 	}
