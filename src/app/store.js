@@ -17,7 +17,8 @@ export const addTodo = todo => ({
     category: todo.category,
     priority: todo.priority,
     task: todo.task,
-    datesAndTime: todo.datesAndTime,
+    startTime: todo.startTime,
+    endTime: todo.endTime,
     attachments: todo.attachments
   }
 });

@@ -15,7 +15,7 @@ class TodoForm extends React.Component {
 			category: '',
 			priority: '',
 			task: '',
-			datesAndTime: '',
+			datesAndTime: [],
 			attachments: []
 		}
 
@@ -25,11 +25,13 @@ class TodoForm extends React.Component {
 	handleSubmit() {
 		const { addTodo } = this.props;
 		const { category, priority, task, datesAndTime, attachments } = this.state;
+
 		const newTodo = {
 			category,
 			priority,
 			task,
-			datesAndTime,
+			startTime: datesAndTime[0].unix(),
+			endTime: datesAndTime[1].unix(),
 			attachments
 		};
  		addTodo( newTodo );
