@@ -48,7 +48,7 @@ class TodoForm extends React.Component {
 							<Priority onChange={priority=>this.setState({priority})}/>
 						</Form.Item>
 						<Form.Item>
-							<Task />
+							<Task onChange={task=>this.setState({task})}/>
 						</Form.Item>
 						<Form.Item>
 							<DateAndTimePicker />
