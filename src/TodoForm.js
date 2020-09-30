@@ -15,8 +15,9 @@ class TodoForm extends React.Component {
 			category: '',
 			priority: '',
 			task: '',
-			datesAndTime: [],
-			attachments: []
+			endTime: null,
+			startTime: null,
+			attachment: null
 		}
 
 		this.handleSubmit = this.handleSubmit.bind(this);
@@ -24,14 +25,14 @@ class TodoForm extends React.Component {
 
 	handleSubmit() {
 		const { addTodo } = this.props;
-		const { category, priority, task, datesAndTime, attachments } = this.state;
-
+		const { category, priority, task, startTime, endTime, attachments } = this.state;
+		
 		const newTodo = {
 			category,
 			priority,
 			task,
-			startTime: datesAndTime[0].unix(),
-			endTime: datesAndTime[1].unix(),
+			startTime,
+			endTime,
 			attachments
 		};
  		addTodo( newTodo );
@@ -53,7 +54,7 @@ class TodoForm extends React.Component {
 							<Task onChange={task=>this.setState({task})}/>
 						</Form.Item>
 						<Form.Item>
-							<DateAndTimePicker onChange={datesAndTime=>this.setState({datesAndTime})}/>
+							<DateAndTimePicker onChange={(startTime, endTime)=>this.setState({startTime, endTime})}/>
 						</Form.Item>
 						<Form.Item>
 							<Attachments />
