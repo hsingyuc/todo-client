@@ -11,7 +11,9 @@ export default class Priority extends React.Component {
 	}
 
 	handlePriorityClick( priority ) {
+		const { onChange } = this.props;
 		this.setState( { priority } );
+		onChange( priority );
 	}
 
 	render() {

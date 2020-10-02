@@ -10,7 +10,10 @@ export default class Task extends React.Component {
 	}
 
 	handleTaskClick( event ) {
+		const { task } = this.state;
+		const { onChange } = this.props;
 		this.setState( { task: event.target.value } );
+		onChange( task );
 	}
 
 	render() {
@@ -19,7 +22,7 @@ export default class Task extends React.Component {
 		return(
 			<Form>
 				<Form.Item name='todo' label="Todo">
-					<Input.TextArea onChange={ event => this.handleTaskClick(event) } value={task} />
+					<Input.TextArea onKeyUp={ event => this.handleTaskClick(event) } value={task} />
 				</Form.Item>
 			</Form>
 		);

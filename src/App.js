@@ -13,7 +13,7 @@ import {
 } from "react-router-dom";
 import Home from './Home';
 import Todos from './Todos';
-import CreateTodo from './CreateTodo';
+import TodoForm from './TodoForm';
 import { PlusCircleFilled } from '@ant-design/icons';
 
 class App extends React.Component {
@@ -62,7 +62,7 @@ class App extends React.Component {
           <Todos />
         </Route>
         <Route path="/add">
-          <CreateTodo />
+          <TodoForm />
         </Route>
         <Route path="/">
           <Home />

@@ -11,7 +11,9 @@ export default class Category extends React.Component {
 	}
 
 	handleCategoryClick( category ) {
+		const { onChange } = this.props;
 		this.setState( { category } );
+		onChange(category);
 	}
 
 	render() {

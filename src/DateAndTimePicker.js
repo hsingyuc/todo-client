@@ -2,15 +2,11 @@ import React from 'react';
 import { DatePicker } from 'antd';
 
 export default class DateAndTimePicker extends React.Component {
-	constructor( props) {
-		super( props );
-		this.state = {
-			dates: []
-		}
-	}
-
-	handleDateClick( dates) {
-		this.setState( { dates } );
+	handleDateClick( datesAndTime) {
+		const { onChange } = this.props;
+		const startTime = datesAndTime[0] ? datesAndTime[0].unix() : null;
+		const endTime = datesAndTime[1] ? datesAndTime[1].unix() : null;
+		onChange(startTime, endTime);
 	}
 
 	render() {
@@ -20,7 +16,7 @@ export default class DateAndTimePicker extends React.Component {
 			<RangePicker
 				showTime={{ format: 'HH:mm' }}
 				format="YYYY-MM-DD HH:mm"
-				onChange={ dates => this.handleDateClick( dates ) }
+				onChange={ datesAndTime => this.handleDateClick( datesAndTime ) }
 			/>
 		);
 	}
