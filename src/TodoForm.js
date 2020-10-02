@@ -4,7 +4,7 @@ import Category from './Category';
 import Priority from './Priority';
 import Task from './Task';
 import DateAndTimePicker from './DateAndTimePicker';
-import Attachments from './Attachments';
+import Attachment from './Attachment';
 import { addTodo as addTodoAction } from './app/store';
 import { connect } from 'react-redux';
 
@@ -25,7 +25,7 @@ class TodoForm extends React.Component {
 
 	handleSubmit() {
 		const { addTodo } = this.props;
-		const { category, priority, task, startTime, endTime, attachments } = this.state;
+		const { category, priority, task, startTime, endTime, attachment } = this.state;
 		
 		const newTodo = {
 			category,
@@ -33,9 +33,9 @@ class TodoForm extends React.Component {
 			task,
 			startTime,
 			endTime,
-			attachments
+			attachment
 		};
- 		addTodo( newTodo );
+		 addTodo( newTodo );
 	}
 
 	render() {
@@ -57,7 +57,7 @@ class TodoForm extends React.Component {
 							<DateAndTimePicker onChange={(startTime, endTime)=>this.setState({startTime, endTime})}/>
 						</Form.Item>
 						<Form.Item>
-							<Attachments />
+							<Attachment onUpload={attachment=>this.setState({attachment})}/>
 						</Form.Item>
 						<Form.Item>
 							<Button type="submit" htmlType="submit">

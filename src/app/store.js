@@ -19,7 +19,7 @@ export const addTodo = todo => ({
     task: todo.task,
     startTime: todo.startTime,
     endTime: todo.endTime,
-    attachments: todo.attachments
+    attachment: todo.attachment
   }
 });
 
