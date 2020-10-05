@@ -25,7 +25,7 @@ export default class Priority extends React.Component {
 				Primary
 			</Menu.Item>
 			<Menu.Item key="secondary" onClick={ () => this.handlePriorityClick('secondary') }>
-				Routine
+				Secondary
 			</Menu.Item>
 			<Menu.Item key="tertiary" onClick={ () => this.handlePriorityClick('tertiary') }>
 				Tertiary
