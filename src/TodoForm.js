@@ -7,6 +7,8 @@ import DateAndTimePicker from './DateAndTimePicker';
 import Attachment from './Attachment';
 import { addTodo as addTodoAction } from './app/store';
 import { connect } from 'react-redux';
+import { withRouter } from 'react-router-dom';
+import { compose } from 'redux';
 
 class TodoForm extends React.Component {
 	constructor( props ) {
@@ -17,7 +19,8 @@ class TodoForm extends React.Component {
 			task: '',
 			endTime: null,
 			startTime: null,
-			attachment: null
+			attachment: null,
+			isLoading: false
 		}
 
 		this.handleSubmit = this.handleSubmit.bind(this);
@@ -34,6 +37,8 @@ class TodoForm extends React.Component {
 			endTime,
 			attachment
 		};
+
+		this.setState( { isLoading: true } );
 		fetch('http://localhost:3000/todos',{
 			method: 'post',
 			headers: {
@@ -48,10 +53,14 @@ class TodoForm extends React.Component {
 			} )
 			.then( todo => {
 				addTodo( todo );
+		 		this.setState( { isLoading: false } );
+				// Change the route
+				this.props.history.push('/todos');
 			} )
 	}
 
 	render() {
+		const { isLoading } = this.state;
 		return(
 			<>
 				<h1>Add</h1>
@@ -73,7 +82,7 @@ class TodoForm extends React.Component {
 							<Attachment onUpload={attachment=>this.setState({attachment})}/>
 						</Form.Item>
 						<Form.Item>
-							<Button type="submit" htmlType="submit">
+							<Button type="submit" htmlType="submit" loading={isLoading}>
 								Save	
 							</Button>
 						</Form.Item>
@@ -88,4 +97,7 @@ const mapDispatchToProps = dispatch => ({
 	addTodo: todo => dispatch( addTodoAction(todo) )
 });
 
-export default connect( null, mapDispatchToProps )(TodoForm);
+export default compose(
+	withRouter,
+	connect(null, mapDispatchToProps)
+  )(TodoForm);

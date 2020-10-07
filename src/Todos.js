@@ -14,10 +14,13 @@ class Todos extends React.PureComponent {
 				{todos.map( todo => {
 					return(
 						<div key={todo.id}>
-							<Link to={`/todos/${todo.id}`}>
-								{todo.content}
-							</Link>
-							<p>{todo.filename}</p>
+							<h1>
+								<Link to={`/todos/${todo.id}`}>
+									{todo.task}
+								</Link>
+							</h1>
+							{todo.startTime}
+							{todo.endTime}
 						</div>
 					);
 				}
