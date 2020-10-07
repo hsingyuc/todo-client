@@ -19,7 +19,8 @@ class TodoForm extends React.Component {
 			task: '',
 			endTime: null,
 			startTime: null,
-			attachment: null
+			attachment: null,
+			isLoading: false
 		}
 
 		this.handleSubmit = this.handleSubmit.bind(this);
@@ -37,6 +38,7 @@ class TodoForm extends React.Component {
 			attachment
 		};
 
+		this.setState( { isLoading: true } );
 		fetch('http://localhost:3000/todos',{
 			method: 'post',
 			headers: {
@@ -51,12 +53,14 @@ class TodoForm extends React.Component {
 			} )
 			.then( todo => {
 				addTodo( todo );
+		 		this.setState( { isLoading: false } );
 				// Change the route
 				this.props.history.push('/todos');
 			} )
 	}
 
 	render() {
+		const { isLoading } = this.state;
 		return(
 			<>
 				<h1>Add</h1>
@@ -78,7 +82,7 @@ class TodoForm extends React.Component {
 							<Attachment onUpload={attachment=>this.setState({attachment})}/>
 						</Form.Item>
 						<Form.Item>
-							<Button type="submit" htmlType="submit">
+							<Button type="submit" htmlType="submit" loading={isLoading}>
 								Save	
 							</Button>
 						</Form.Item>
