@@ -45,9 +45,9 @@ const reducer = ( state = initialState, action ) => {
         ...state,
         editingId: action.payload
       };
-    case 'ADD_TODO':
-      return {
-        ...state,
+      case 'ADD_TODO':
+        return {
+          ...state,
         todos: [ ...state.todos, action.payload ]
       };
     case 'REMOVE_TODO':
