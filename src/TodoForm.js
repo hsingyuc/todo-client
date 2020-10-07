@@ -26,7 +26,6 @@ class TodoForm extends React.Component {
 	handleSubmit() {
 		const { addTodo } = this.props;
 		const { category, priority, task, startTime, endTime, attachment } = this.state;
-		
 		const newTodo = {
 			category,
 			priority,
@@ -35,7 +34,21 @@ class TodoForm extends React.Component {
 			endTime,
 			attachment
 		};
-		 addTodo( newTodo );
+		fetch('http://localhost:3000/todos',{
+			method: 'post',
+			headers: {
+				'Content-Type': 'application/json'
+			},
+			body: JSON.stringify(newTodo)
+		})
+			.then( response => {
+				if( response.status === 200 ) {
+					return response.json();
+				}
+			} )
+			.then( todo => {
+				addTodo( todo );
+			} )
 	}
 
 	render() {
