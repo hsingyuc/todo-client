@@ -7,6 +7,8 @@ import DateAndTimePicker from './DateAndTimePicker';
 import Attachment from './Attachment';
 import { addTodo as addTodoAction } from './app/store';
 import { connect } from 'react-redux';
+import { withRouter } from 'react-router-dom';
+import { compose } from 'redux';
 
 class TodoForm extends React.Component {
 	constructor( props ) {
@@ -34,6 +36,7 @@ class TodoForm extends React.Component {
 			endTime,
 			attachment
 		};
+
 		fetch('http://localhost:3000/todos',{
 			method: 'post',
 			headers: {
@@ -48,6 +51,8 @@ class TodoForm extends React.Component {
 			} )
 			.then( todo => {
 				addTodo( todo );
+				// Change the route
+				this.props.history.push('/todos');
 			} )
 	}
 
@@ -88,4 +93,7 @@ const mapDispatchToProps = dispatch => ({
 	addTodo: todo => dispatch( addTodoAction(todo) )
 });
 
-export default connect( null, mapDispatchToProps )(TodoForm);
+export default compose(
+	withRouter,
+	connect(null, mapDispatchToProps)
+  )(TodoForm);
