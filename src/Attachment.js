@@ -16,8 +16,8 @@ export default class Attachment extends React.PureComponent {
 					if (status === 'done') {
 						message.success(`${uploadInfo.file.name} file uploaded successfully.`);
 						const { onUpload } = this.props;
-						if ( uploadInfo.file.response && uploadInfo.file.response.path ) {
-							onUpload(uploadInfo.file.response.path);
+						if ( uploadInfo.file.response && uploadInfo.file.response.filename ) {
+							onUpload(uploadInfo.file.response.filename);
 						}
 					} else if (status === 'error') {
 						message.error(`${uploadInfo.file.name} file upload failed.`);

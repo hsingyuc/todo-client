@@ -25,7 +25,8 @@ class Todo extends React.Component {
 					<p>Priority: {todo.priority}</p>
 					<p>Start time: {todo.startTime}</p>
 					<p>End time: {todo.endTime}</p>
-					<div>Attachment: {todo.attachment}</div>
+					<p>Attachment:</p> 
+					<img src={`http://localhost:3000/uploads/${todo.attachment}`} alt='attachment' />
 				</div>
 			</div>
 		);
