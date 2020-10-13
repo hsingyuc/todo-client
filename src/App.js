@@ -15,6 +15,7 @@ import Home from './Home';
 import Todos from './Todos';
 import TodoForm from './TodoForm';
 import { PlusCircleFilled } from '@ant-design/icons';
+import Todo from './Todo';
 
 class App extends React.Component {
   componentDidMount() {
@@ -48,27 +49,31 @@ class App extends React.Component {
 
   render() {
     return (
-    <Router>
-      <Link to="/">Home</Link>
-      <Link to="/todos">Todos</Link>
-      <Link to="/add">
-        <PlusCircleFilled />
-      </Link>
+      <Router>
+        <Link to="/">Home</Link>
+        <Link to="/todos">Todos</Link>
+        <Link to="/add">
+          <PlusCircleFilled />
+        </Link>
 
-    {/* A <Switch> looks through its children <Route>s and
-      renders the first one that matches the current URL. */}
-      <Switch>
-        <Route path="/todos">
-          <Todos />
-        </Route>
-        <Route path="/add">
-          <TodoForm />
-        </Route>
-        <Route path="/">
-          <Home />
-        </Route>
-      </Switch>
-    </Router>);
+      {/* A <Switch> looks through its children <Route>s and
+        renders the first one that matches the current URL. */}
+        <Switch>
+          <Route path="/todos/:id">
+            <Todo />
+          </Route>
+          <Route path="/todos">
+            <Todos />
+          </Route>
+          <Route path="/add">
+            <TodoForm />
+          </Route>
+          <Route path="/">
+            <Home />
+          </Route>
+        </Switch>
+      </Router>
+    );
   }
 }
 
