@@ -19,7 +19,8 @@ export const addTodo = todo => ({
     task: todo.task,
     startTime: todo.startTime,
     endTime: todo.endTime,
-    attachment: todo.attachment
+    attachment: todo.attachment,
+    id: todo.id
   }
 });
 
