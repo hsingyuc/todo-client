@@ -24,7 +24,17 @@ class Home extends React.Component {
 		
 	}
 	
-	
+	getBadgeStatus( priority ) {
+		if ( 'primary' === priority )  {
+			return 'error';
+		}
+		if ( 'secondary' === priority )  {
+			return 'warning';
+		}
+		if ( 'tertiary' === priority )  {
+			return 'success';
+		}
+	}
 
 	dateCellRender(date) {
 		const listData = this.getTodosForDate(date);
@@ -32,7 +42,7 @@ class Home extends React.Component {
 		  <div>
 			{listData.map(item => (
 			  <span key={item.id}>
-				<Badge />
+				<Badge status={this.getBadgeStatus(item.priority)}/>
 			  </span>
 			))}
 		  </div>
