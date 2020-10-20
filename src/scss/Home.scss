@@ -1,0 +1,28 @@
+.home-container {
+	display: flex;
+
+	.home-calendar {
+		width: 70%;
+		position: relative;
+
+		.ant-picker-cell-inner.ant-picker-calendar-date {
+			height: 14vh !important;
+		}
+	}
+
+	.btn-add-todo {
+		position: absolute;
+		bottom: 10px;
+		right: 10px;
+		z-index: 2;
+
+		svg {
+			width: 30px;
+			height: 30px;
+		}
+	}
+
+	.home-todo {
+		width: 30%;
+	}
+}
