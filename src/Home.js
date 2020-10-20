@@ -1,6 +1,8 @@
 import React from 'react';
 import { Calendar, Badge } from 'antd';
 import { connect } from 'react-redux';
+import { Link } from "react-router-dom";
+import { PlusCircleFilled } from '@ant-design/icons';
 
 class Home extends React.Component {
 	constructor( props ) {
@@ -51,8 +53,17 @@ class Home extends React.Component {
 
 	render() {
 		return(
-			<div>
-				<Calendar dateCellRender={this.dateCellRender} />
+			<div className='home-container'>
+				<div className='home-calendar'>
+					<Calendar dateCellRender={this.dateCellRender} />
+					<Link to="/add" className='btn-add-todo'>
+						<PlusCircleFilled />
+					</Link>
+				</div>
+				<div className='home-todo'>
+					{/* @Todo match today's todo */}
+					<Link to="/todos/:id">Today's todo</Link>
+				</div>
 			</div>
 		);
 	}
