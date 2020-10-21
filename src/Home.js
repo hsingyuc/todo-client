@@ -3,10 +3,15 @@ import { Calendar, Badge } from 'antd';
 import { connect } from 'react-redux';
 import { Link } from "react-router-dom";
 import { PlusCircleFilled } from '@ant-design/icons';
+import Todos from './Todos';
+import * as moment from 'moment';
 
 class Home extends React.Component {
 	constructor( props ) {
 		super( props );
+		this.state = {
+			selectedDate: moment()
+		};
 		this.dateCellRender = this.dateCellRender.bind(this);
 	}
 
@@ -23,7 +28,6 @@ class Home extends React.Component {
 			( todo.endTime <= endOfDay && todo.endTime >= startOfDay ) ||
 			( startOfDay >= todo.startTime && startOfDay <= todo.endTime );
 		} );
-		
 	}
 	
 	getBadgeStatus( priority ) {
@@ -39,30 +43,37 @@ class Home extends React.Component {
 	}
 
 	dateCellRender(date) {
-		const listData = this.getTodosForDate(date);
+		const filteredTodos = this.getTodosForDate(date);
+
 		return (
-		  <div>
-			{listData.map(item => (
+		  <>
+			{filteredTodos.map(item => (
 			  <span key={item.id}>
 				<Badge status={this.getBadgeStatus(item.priority)}/>
 			  </span>
 			))}
-		  </div>
+		  </>
 		);
 	}
 
+	handleSelectedDate(date) {
+		this.setState( { selectedDate: date } );
+	}
+
 	render() {
+		const { selectedDate } = this.state;
+		const todayTodos = selectedDate ? this.getTodosForDate(selectedDate) : [];
+
 		return(
 			<div className='home-container'>
 				<div className='home-calendar'>
-					<Calendar dateCellRender={this.dateCellRender} />
+					<Calendar dateCellRender={this.dateCellRender} onSelect={date=>this.handleSelectedDate(date)}/>
 					<Link to="/add" className='btn-add-todo'>
 						<PlusCircleFilled />
 					</Link>
 				</div>
 				<div className='home-todo'>
-					{/* @Todo match today's todo */}
-					<Link to="/todos/:id">Today's todo</Link>
+					<Todos todos={ todayTodos } />
 				</div>
 			</div>
 		);
