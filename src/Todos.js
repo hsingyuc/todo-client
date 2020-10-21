@@ -1,13 +1,16 @@
 import React from 'react';
-import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 
-class Todos extends React.PureComponent {
+export default class Todos extends React.PureComponent {
 	render() {
 		const { todos } = this.props;
-		
-		if( !todos ) {
-			return 'Loading...';
+	
+		if( !todos.length ) {
+			return (
+				<div>
+					<span>You are free today!</span>
+				</div>
+			);
 		}
 		return(
 			<div>
@@ -29,9 +32,3 @@ class Todos extends React.PureComponent {
 		);
 	}
 }
-
-const mapStateToProp = state => ({
-	todos: state.todos
-});
-
-export default connect(mapStateToProp)(Todos);
