@@ -47,6 +47,8 @@ class App extends React.Component {
   }
 
   render() {
+    const { todos } = this.props;
+
     return (
       <Router>
         <Link to="/">Home</Link>
@@ -59,7 +61,7 @@ class App extends React.Component {
             <Todo />
           </Route>
           <Route path="/todos">
-            <Todos />
+            <Todos todos={ todos } />
           </Route>
           <Route path="/add">
             <TodoForm />
