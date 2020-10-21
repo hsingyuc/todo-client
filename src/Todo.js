@@ -12,7 +12,7 @@ class Todo extends React.Component {
 			return 'Loading...';
 		}
 		return(
-			<div>
+			<div className='todo-container'>
 				<Link to="/">
 					<button type="button">
 						Home
