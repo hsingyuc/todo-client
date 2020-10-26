@@ -43,18 +43,18 @@ export default class Todos extends React.PureComponent {
 		return times;
 	}
 
+	hasPrimary(todos) {
+		return todos.filter( todo => {
+			return todo.priority === "primary"
+		} ).length
+	}
+
 	render() {
 		const { todos } = this.props;
-	
-		if( !todos.length ) {
-			return (
-				<div>
-					<span>You are free today!</span>
-				</div>
-			);
-		}
+		
 		return(
 			<div>
+				{this.hasPrimary(todos) ? `You have some important tasks to do today.` : `Today is a great day!`}
 				{this.renderTimeline(todos)}
 			</div>
 		);
