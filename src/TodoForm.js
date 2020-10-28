@@ -55,7 +55,7 @@ class TodoForm extends React.Component {
 				addTodo( todo );
 		 		this.setState( { isLoading: false } );
 				// Change the route
-				this.props.history.push('/todos');
+				this.props.history.push('/');
 			} )
 	}
 
