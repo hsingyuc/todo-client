@@ -37,7 +37,7 @@ class TodoForm extends React.Component {
 			endTime,
 			attachment
 		};
-
+		
 		this.setState( { isLoading: true } );
 		fetch('http://localhost:3000/todos',{
 			method: 'post',
@@ -72,10 +72,10 @@ class TodoForm extends React.Component {
 						<Form.Item>
 							<Priority onChange={priority=>this.setState({priority})}/>
 						</Form.Item>
-						<Form.Item>
+						<Form.Item name="task" rules={[{ required: true, message: 'Please input todo content.' }]}>
 							<Task onChange={task=>this.setState({task})}/>
 						</Form.Item>
-						<Form.Item>
+						<Form.Item name="date-and-time" rules={[{ required: true, message: 'Please input date and time.' }]}>
 							<DateAndTimePicker onChange={(startTime, endTime)=>this.setState({startTime, endTime})}/>
 						</Form.Item>
 						<Form.Item>
