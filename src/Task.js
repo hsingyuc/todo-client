@@ -2,7 +2,7 @@ import React from 'react';
 import { Form, Input } from 'antd';
 
 export default class Task extends React.Component {
-	constructor( props) {
+	constructor( props ) {
 		super( props );
 		this.state = {
 			task: ""
