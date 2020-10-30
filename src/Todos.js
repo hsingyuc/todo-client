@@ -4,21 +4,37 @@ import { Link } from 'react-router-dom';
 
 export default class Todos extends React.PureComponent {
 	renderTimeline(todos) {
+		const todosByTime = {};
+		todos.forEach( todo => {
+			const time = moment.unix(todo.startTime).format('H:mm') + '-' + moment.unix(todo.endTime).format('H:mm');
+			if ( ! todosByTime[ time ] ) {
+				todosByTime[ time ] = [];
+			}
+
+			todosByTime[ time ].push( todo );
+		} );
+		
 		return (
-			todos.map( todo => {
-				const todoStartHour = moment.unix(todo.startTime).format('H:mm'); //10:00
-				const todoEndHour = moment.unix(todo.endTime).format('H:mm'); //12:00
-				
-				return(
-					<div key={todo.id}>
-						<div className='timeline-start_end-hour'>{todoStartHour} - {todoEndHour}</div>
-						<div className='timeline-todo'>
-							<Link to={`/todos/${todo.id}`}>
-								{todo.task}
-							</Link>
-						</div>
-					</div>
-				)
+			Object.keys( todosByTime ).sort( (a,b) => parseInt( a.split('-')[0].replace(':', '') ) - parseInt( b.split('-')[0].replace(':', '') ) ).map( time => {
+				const todos = todosByTime[ time ];
+				const todoStartHour = time.split('-')[0];
+				const todoEndHour = time.split('-')[1]
+				return <div>
+					<div className='timeline-start_end-hour'>{todoStartHour} - {todoEndHour}</div>
+
+					{ todos.map( todo => {
+						
+						return(
+							<div key={todo.id}>
+								<div className='timeline-todo'>
+									<Link to={`/todos/${todo.id}`}>
+										{todo.task}
+									</Link>
+								</div>
+							</div>
+						)
+					} ) }
+				</div>
 			})
 		);
 	}
