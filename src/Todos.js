@@ -1,46 +1,42 @@
 import React from 'react';
 import * as moment from 'moment';
-import { Timeline } from 'antd';
 import { Link } from 'react-router-dom';
 
 export default class Todos extends React.PureComponent {
 	renderTimeline(todos) {
-		const todosMap = {};
-
-		todos.map( todo => {
-			const todoStartHour = moment.unix(todo.startTime).format('H');
-			
-			if( !todosMap[ todoStartHour ] ) {
-				todosMap[ todoStartHour ] = [];
+		const todosByTime = {};
+		todos.forEach( todo => {
+			const time = moment.unix(todo.startTime).format('H:mm') + '-' + moment.unix(todo.endTime).format('H:mm');
+			if ( ! todosByTime[ time ] ) {
+				todosByTime[ time ] = [];
 			}
-			return todosMap[ todoStartHour ].push( todo );
+
+			todosByTime[ time ].push( todo );
 		} );
+		
+		return (
+			Object.keys( todosByTime ).sort( (a,b) => parseInt( a.split('-')[0].replace(':', '') ) - parseInt( b.split('-')[0].replace(':', '') ) ).map( time => {
+				const todos = todosByTime[ time ];
+				const todoStartHour = time.split('-')[0];
+				const todoEndHour = time.split('-')[1]
+				return <div>
+					<div className='timeline-start_end-hour'>{todoStartHour} - {todoEndHour}</div>
 
-		const times = [];
-		for( let time = 0; time < 24; time++ ) {
-			const hourTodos = todosMap[time] ? todosMap[time] : [];
-			
-			times.push(
-				<Timeline mode={'left'}>
-					<Timeline.Item label={
-						time === 0 ? time + '0:00' : time + ':00'
-						}>
-						{ hourTodos.map( todo => {
-								return(
-									<>
-										<Link to={`/todos/${todo.id}`}>
-											{todo.task}
-										</Link>
-									</>
-								)
-							}
-						) }
-					</Timeline.Item>
-				</Timeline>
-			)
-		}
-
-		return times;
+					{ todos.map( todo => {
+						
+						return(
+							<div key={todo.id}>
+								<div className='timeline-todo'>
+									<Link to={`/todos/${todo.id}`}>
+										{todo.task}
+									</Link>
+								</div>
+							</div>
+						)
+					} ) }
+				</div>
+			})
+		);
 	}
 
 	hasPrimary(todos) {
