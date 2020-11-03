@@ -5,8 +5,10 @@ import { Link } from 'react-router-dom';
 export default class Todos extends React.PureComponent {
 	renderTimeline(todos) {
 		const todosByTime = {};
+
 		todos.forEach( todo => {
 			const time = moment.unix(todo.startTime).format('H:mm') + '-' + moment.unix(todo.endTime).format('H:mm');
+			
 			if ( ! todosByTime[ time ] ) {
 				todosByTime[ time ] = [];
 			}
@@ -15,15 +17,13 @@ export default class Todos extends React.PureComponent {
 		} );
 		
 		return (
-			Object.keys( todosByTime ).sort( (a,b) => parseInt( a.split('-')[0].replace(':', '') ) - parseInt( b.split('-')[0].replace(':', '') ) ).map( time => {
+			Object.keys( todosByTime ).sort( (a,b) => a.split('-')[0].replace(':', '') - b.split('-')[0].replace(':', '') ).map( time => {
 				const todos = todosByTime[ time ];
-				const todoStartHour = time.split('-')[0];
-				const todoEndHour = time.split('-')[1]
-				return <div>
-					<div className='timeline-start_end-hour'>{todoStartHour} - {todoEndHour}</div>
+
+				return <div className='timeline'>
+					<div className='timeline-time'>{time}</div>
 
 					{ todos.map( todo => {
-						
 						return(
 							<div key={todo.id}>
 								<div className='timeline-todo'>
