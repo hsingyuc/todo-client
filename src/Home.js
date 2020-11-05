@@ -67,11 +67,13 @@ class Home extends React.Component {
 		return(
 			<div className='home-container'>
 				<div className='home-calendar'>
+					<div className="home-calendar_month">{ selectedDate.format('MMMM') }</div>
 					<Calendar dateCellRender={this.dateCellRender} onSelect={date=>this.handleSelectedDate(date)}/>
 					<Link to="/add" className='btn-add-todo'>
 						<PlusCircleFilled />
 					</Link>
 				</div>
+				{/* @Todo If click addTodo button then switch to todoForm */}
 				<div className='home-todo'>
 					<Todos todos={ todayTodos } />
 				</div>
