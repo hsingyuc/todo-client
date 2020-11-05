@@ -51,9 +51,6 @@ class App extends React.Component {
 
     return (
       <Router>
-        <Link to="/">Home</Link>
-        <Link to="/todos">Todos</Link>
-
       {/* A <Switch> looks through its children <Route>s and
         renders the first one that matches the current URL. */}
         <Switch>
