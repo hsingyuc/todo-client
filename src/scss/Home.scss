@@ -56,6 +56,19 @@
 				height: 20px;
 			}
 		}
+
+		thead {
+			font-size: 20px;
+			
+			th {
+				color: gray;
+				line-height: 25px;
+				padding: 0 45px 0px 15px;
+				letter-spacing: 0.1em;
+				font-family: 'Montserrat', sans-serif;
+				font-weight: 500;
+			}
+		}
 	}
 
 	.home-todo {

@@ -13,6 +13,8 @@ class Home extends React.Component {
 			selectedDate: moment()
 		};
 		this.dateCellRender = this.dateCellRender.bind(this);
+
+		moment.updateLocale( 'en', { weekdaysMin : ["SUN", "MON", "TUE", "WED", "THU", "FRI", "SAT"] } )
 	}
 
 	getTodosForDate(date) {
