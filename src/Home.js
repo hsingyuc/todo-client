@@ -2,7 +2,7 @@ import React from 'react';
 import { Calendar, Badge } from 'antd';
 import { connect } from 'react-redux';
 import { Link } from "react-router-dom";
-import { PlusCircleFilled } from '@ant-design/icons';
+import { PlusOutlined, SearchOutlined } from '@ant-design/icons';
 import Todos from './Todos';
 import * as moment from 'moment';
 
@@ -68,10 +68,16 @@ class Home extends React.Component {
 			<div className='home-container'>
 				<div className='home-calendar'>
 					<div className="home-calendar_month">{ selectedDate.format('MMMM') }</div>
-					<Calendar dateCellRender={this.dateCellRender} onSelect={date=>this.handleSelectedDate(date)}/>
+					<Calendar 
+						dateCellRender={this.dateCellRender} 
+						onSelect={date=>this.handleSelectedDate(date)}
+					/>
 					<Link to="/add" className='btn-add-todo'>
-						<PlusCircleFilled />
+						<PlusOutlined />
 					</Link>
+					<div className='btn-search'>
+						<SearchOutlined />
+					</div>
 				</div>
 				{/* @Todo If click addTodo button then switch to todoForm */}
 				<div className='home-todo'>

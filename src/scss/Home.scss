@@ -5,6 +5,18 @@
 		width: 70%;
 		position: relative;
 
+		.ant-picker-calendar-header {
+			padding: 38px 15px;
+
+			.ant-select {
+				right: 70px;
+			}
+
+			.ant-select.ant-picker-calendar-year-select.ant-select-single.ant-select-show-arrow {
+				right: 80px;
+			}
+		}
+
 		.ant-picker-cell-inner.ant-picker-calendar-date {
 			height: 14vh !important;
 		}
@@ -15,22 +27,34 @@
 
 		.home-calendar_month {
 			position: absolute;
-			top: 10px;
-			left: 15px;
+			top: 13px;
+			left: 25px;
 			font-family: 'Bebas Neue', cursive;
-			font-size: 35px;
+			font-size: 50px;
 		}
-	}
 
-	.btn-add-todo {
-		position: absolute;
-		bottom: 10px;
-		right: 10px;
-		z-index: 2;
+		.btn-add-todo {
+			position: absolute;
+			z-index: 2;
+			top: 44px;
+			right: 50px;
+			color: black;
+	
+			svg {
+				width: 20px;
+				height: 20px;
+			}
+		}
 
-		svg {
-			width: 30px;
-			height: 30px;
+		.btn-search {
+			position: absolute;
+			top: 44px;
+			right: 15px;
+
+			svg {
+				width: 20px;
+				height: 20px;
+			}
 		}
 	}
 
