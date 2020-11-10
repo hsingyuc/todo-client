@@ -62,12 +62,14 @@ class TodoForm extends React.Component {
 
 	render() {
 		const { isLoading } = this.state;
+		const { closeTodoForm } = this.props;
+		
 		return(
 			<div>
 				<div>
-					<Link to='/todo'>
-						<ArrowLeft size="25" />Todo
-					</Link>
+					<Link onClick={closeTodoForm}>
+						<ArrowLeft size="25" />
+						Todo
 				</div>
 				<h1>Add</h1>
 				<Form method='post' name='forminfo' onFinish={this.handleSubmit}>
