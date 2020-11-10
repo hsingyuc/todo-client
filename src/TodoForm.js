@@ -7,8 +7,9 @@ import DateAndTimePicker from './DateAndTimePicker';
 import Attachment from './Attachment';
 import { addTodo as addTodoAction } from './app/store';
 import { connect } from 'react-redux';
-import { withRouter } from 'react-router-dom';
+import { Link, withRouter } from 'react-router-dom';
 import { compose } from 'redux';
+import { ArrowLeft } from '@styled-icons/bootstrap'
 
 class TodoForm extends React.Component {
 	constructor( props ) {
@@ -62,7 +63,12 @@ class TodoForm extends React.Component {
 	render() {
 		const { isLoading } = this.state;
 		return(
-			<>
+			<div>
+				<div>
+					<Link to='/todo'>
+						<ArrowLeft size="25" />Todo
+					</Link>
+				</div>
 				<h1>Add</h1>
 				<Form method='post' name='forminfo' onFinish={this.handleSubmit}>
 					<Space direction="vertical">
@@ -88,7 +94,7 @@ class TodoForm extends React.Component {
 						</Form.Item>
 					</Space>
 				</Form>
-			</>
+			</div>
 		);
 	}
 }
