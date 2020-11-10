@@ -5,12 +5,14 @@ import { Link } from "react-router-dom";
 import { PlusOutlined, SearchOutlined } from '@ant-design/icons';
 import Todos from './Todos';
 import * as moment from 'moment';
+import TodoForm from './TodoForm';
 
 class Home extends React.Component {
 	constructor( props ) {
 		super( props );
 		this.state = {
-			selectedDate: moment()
+			selectedDate: moment(),
+			isTodoForm: false
 		};
 		this.dateCellRender = this.dateCellRender.bind(this);
 
@@ -62,8 +64,12 @@ class Home extends React.Component {
 		this.setState( { selectedDate: date } );
 	}
 
+	closeTodoForm() {
+		this.setState( { isTodoForm: false } );
+	}
+
 	render() {
-		const { selectedDate } = this.state;
+		const { selectedDate, isTodoForm } = this.state;
 		const todayTodos = selectedDate ? this.getTodosForDate(selectedDate) : [];
 
 		return(
@@ -74,16 +80,19 @@ class Home extends React.Component {
 						dateCellRender={this.dateCellRender} 
 						onSelect={date=>this.handleSelectedDate(date)}
 					/>
-					<Link to="/add" className='btn-add-todo'>
+					<Link className='btn-add-todo' onClick={()=>this.setState({isTodoForm:true})}>
 						<PlusOutlined />
 					</Link>
 					<div className='btn-search'>
 						<SearchOutlined />
 					</div>
 				</div>
-				{/* @Todo If click addTodo button then switch to todoForm */}
-				<div className='home-todo'>
-					<Todos todos={ todayTodos } />
+				
+				<div className='home-action'>
+					{ isTodoForm 
+						? <div className='home-todo-form'><TodoForm closeTodoForm={ () => this.closeTodoForm() } /></div>
+						: <div className='home-todos'><Todos todos={ todayTodos } /></div>
+					}
 				</div>
 			</div>
 		);
