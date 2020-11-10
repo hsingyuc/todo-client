@@ -2,23 +2,89 @@
 	display: flex;
 
 	.home-calendar {
-		width: 70%;
+		width: 60%;
 		position: relative;
 
-		.ant-picker-cell-inner.ant-picker-calendar-date {
-			height: 14vh !important;
+		.ant-picker-calendar-header {
+			padding: 38px 15px;
+
+			.ant-select {
+				right: 70px;
+			}
+
+			.ant-select.ant-picker-calendar-year-select.ant-select-single.ant-select-show-arrow {
+				right: 80px;
+			}
 		}
-	}
 
-	.btn-add-todo {
-		position: absolute;
-		bottom: 10px;
-		right: 10px;
-		z-index: 2;
+		.ant-radio-group {
+			display: none;
+		}
 
-		svg {
-			width: 30px;
-			height: 30px;
+		.home-calendar_month {
+			position: absolute;
+			top: 13px;
+			left: 30px;
+			font-family: 'Bebas Neue', cursive;
+			font-size: 50px;
+		}
+
+		.btn-add-todo {
+			position: absolute;
+			z-index: 2;
+			top: 44px;
+			right: 50px;
+			color: black;
+	
+			svg {
+				width: 20px;
+				height: 20px;
+			}
+		}
+
+		.btn-search {
+			position: absolute;
+			top: 44px;
+			right: 15px;
+
+			svg {
+				width: 20px;
+				height: 20px;
+			}
+		}
+		
+		.ant-picker-panel {
+			thead {
+				font-size: 20px;
+				
+				th {
+					color: gray;
+					line-height: 25px;
+					padding: 0 25px 50px 15px;
+					letter-spacing: 0.1em;
+					font-family: 'Montserrat', sans-serif;
+					font-weight: 500;
+					text-align: center;
+				}
+			}
+
+			tbody{
+				font-size: 15px;
+				text-align: center;
+				
+				.ant-picker-cell-inner.ant-picker-calendar-date {
+					border-top: 0px;
+					padding: 0 25px 0 15px;
+					font-family: 'Montserrat', sans-serif;
+					font-weight: 700;
+					font-size: 16px;
+				}
+
+				.ant-picker-calendar-date-content{
+					height: 70px;
+					text-align: center;
+				}
+			}
 		}
 	}
 
