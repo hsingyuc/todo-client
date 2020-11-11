@@ -31,10 +31,10 @@
 
 		.btn-add-todo {
 			position: absolute;
-			z-index: 2;
 			top: 44px;
 			right: 50px;
-			color: black;
+			border: 0;
+			background: transparent;
 	
 			svg {
 				width: 20px;
