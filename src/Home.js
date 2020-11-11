@@ -1,18 +1,16 @@
 import React from 'react';
 import { Calendar, Badge } from 'antd';
 import { connect } from 'react-redux';
-import { Link } from "react-router-dom";
 import { PlusOutlined, SearchOutlined } from '@ant-design/icons';
-import Todos from './Todos';
 import * as moment from 'moment';
-import TodoForm from './TodoForm';
+import HomeAction from './HomeAction';
 
 class Home extends React.Component {
 	constructor( props ) {
 		super( props );
 		this.state = {
 			selectedDate: moment(),
-			isTodoForm: false
+			view: 'todos',
 		};
 		this.dateCellRender = this.dateCellRender.bind(this);
 
@@ -64,35 +62,32 @@ class Home extends React.Component {
 		this.setState( { selectedDate: date } );
 	}
 
-	closeTodoForm() {
-		this.setState( { isTodoForm: false } );
-	}
-
 	render() {
-		const { selectedDate, isTodoForm } = this.state;
-		const todayTodos = selectedDate ? this.getTodosForDate(selectedDate) : [];
+		const { selectedDate, view } = this.state;
 
 		return(
 			<div className='home-container'>
 				<div className='home-calendar'>
 					<div className="home-calendar_month">{ selectedDate.format('MMMM') }</div>
 					<Calendar 
-						dateCellRender={this.dateCellRender} 
-						onSelect={date=>this.handleSelectedDate(date)}
+						dateCellRender={ this.dateCellRender } 
+						onSelect={ date => this.handleSelectedDate(date) }
 					/>
-					<Link className='btn-add-todo' onClick={()=>this.setState({isTodoForm:true})}>
+					<button className='btn-add-todo' onClick={ () => this.setState( { view: 'todo-form' } ) }>
 						<PlusOutlined />
-					</Link>
-					<div className='btn-search'>
+					</button>
+					<button className='btn-search' onClick={ () => this.setState( { view: 'search' } ) }>
 						<SearchOutlined />
-					</div>
+					</button>
 				</div>
 				
 				<div className='home-action'>
-					{ isTodoForm 
-						? <div className='home-todo-form'><TodoForm closeTodoForm={ () => this.closeTodoForm() } /></div>
-						: <div className='home-todos'><Todos todos={ todayTodos } /></div>
-					}
+					<HomeAction 
+						selectedDate = { selectedDate }
+						getTodosForDate = { date => this.getTodosForDate(date) }
+						view = { view }
+						setView = { (v) => this.setState( { view: v } ) }
+					/>
 				</div>
 			</div>
 		);
