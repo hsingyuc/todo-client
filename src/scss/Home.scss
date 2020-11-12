@@ -8,12 +8,43 @@
 		.ant-picker-calendar-header {
 			padding: 38px 15px;
 
-			.ant-select {
-				right: 70px;
+			.ant-select-selector {
+				border: 0;
+
+				.ant-select-selection-item {
+					padding-right: 0;
+				}
 			}
 
-			.ant-select.ant-picker-calendar-year-select.ant-select-single.ant-select-show-arrow {
-				right: 80px;
+			.ant-select, .ant-select-focused .ant-select-selector {
+				box-shadow: none;
+			}
+			
+			.ant-select.ant-picker-calendar-year-select {
+				min-width: 0;
+				font-size: 20px;
+				
+				.ant-select-selector {
+					padding-right: 8px;
+				}
+
+				.ant-select-selection-item {
+					border-bottom: 1px solid lightgray;
+				}
+			}
+
+			.ant-select.ant-picker-calendar-month-select {
+				margin-right: 45px;
+				margin-left: 0px;
+				font-size: 20px;
+
+				.ant-select-selection-search {
+					border-bottom: 1px solid lightgray;
+				}
+			}
+
+			.ant-select-arrow {
+				color: transparent;
 			}
 		}
 
@@ -31,14 +62,20 @@
 
 		.btn-add-todo {
 			position: absolute;
-			z-index: 2;
 			top: 44px;
 			right: 50px;
-			color: black;
-	
+			border: 0;
+			background: transparent;
+			padding: 0;
+			outline: none;
+
 			svg {
 				width: 20px;
 				height: 20px;
+			}
+
+			&:hover {
+				color: lightgray;
 			}
 		}
 
@@ -46,10 +83,18 @@
 			position: absolute;
 			top: 44px;
 			right: 15px;
+			border: 0;
+			background: transparent;
+			padding: 0;
+			outline: none;
 
 			svg {
 				width: 20px;
 				height: 20px;
+			}
+
+			&:hover {
+				color: lightgray;
 			}
 		}
 		
