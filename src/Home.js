@@ -73,10 +73,10 @@ class Home extends React.Component {
 						dateCellRender={ this.dateCellRender } 
 						onSelect={ date => this.handleSelectedDate(date) }
 					/>
-					<button className='btn-add-todo' onClick={ () => this.setState( { view: 'todo-form' } ) }>
+					<button className='btn btn-add-todo' onClick={ () => this.setState( { view: 'todo-form' } ) }>
 						<PlusOutlined />
 					</button>
-					<button className='btn-search' onClick={ () => this.setState( { view: 'search' } ) }>
+					<button className='btn btn-search' onClick={ () => this.setState( { view: 'search' } ) }>
 						<SearchOutlined />
 					</button>
 				</div>

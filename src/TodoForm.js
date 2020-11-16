@@ -66,7 +66,7 @@ class TodoForm extends React.Component {
 		
 		return(
 			<div>
-				<button onClick={closeTodoForm}>
+				<button className='btn btn-arrow-left' onClick={closeTodoForm}>
 					<ArrowLeft size="25" />
 				</button>
 				Todo

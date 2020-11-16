@@ -14,7 +14,7 @@ class Todo extends React.Component {
 		return(
 			<div className='todo-container'>
 				<Link to="/">
-					<button type="button">
+					<button className='btn btn-arrow-left' type="button">
 						Home
 					</button>
 				</Link>
