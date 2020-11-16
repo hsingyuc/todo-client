@@ -66,10 +66,12 @@ class TodoForm extends React.Component {
 		
 		return(
 			<div>
-				<button className='btn btn-arrow-left' onClick={closeTodoForm}>
-					<ArrowLeft size="25" />
-				</button>
-				Todo
+				<div className='btn-container'>
+					<button className='btn btn-arrow-left' onClick={closeTodoForm}>
+						<ArrowLeft size="25" />
+					</button>
+					<span className='btn-text'>Todo</span>
+				</div>
 				<h1>Add</h1>
 				<Form method='post' name='forminfo' onFinish={this.handleSubmit}>
 					<Space direction="vertical">
