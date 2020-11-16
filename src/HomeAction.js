@@ -49,7 +49,7 @@ class HomeAction extends React.Component {
 				return <div className='home-todo-form'><TodoForm closeTodoForm={ () => setView('todos') } /></div>;
 			case 'search':
 				return <div> 
-					<button onClick={ () => setView('todos') }>
+					<button className='btn btn-arrow-left' onClick={ () => setView('todos') }>
 						<ArrowLeft size="25"  />
 					</button>
 					Todo
