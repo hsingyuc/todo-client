@@ -25,7 +25,7 @@ class TodoForm extends React.Component {
 	}
 
 	handleSubmit() {
-		const { addTodo } = this.props;
+		const { addTodo, setView } = this.props;
 		const { priority, task, startTime, endTime, attachment } = this.state;
 		const newTodo = {
 			priority,
@@ -51,14 +51,12 @@ class TodoForm extends React.Component {
 			.then( todo => {
 				addTodo( todo );
 		 		this.setState( { isLoading: false } );
-				// Change the route
-				this.props.history.push('/');
+				setView();
 			} )
 	}
 
 	render() {
 		const { isLoading } = this.state;
-		const { setView } = this.props;
 		
 		return(
 			<div className='todo-form'>
@@ -78,7 +76,7 @@ class TodoForm extends React.Component {
 							<Attachment onUpload={attachment=>this.setState({attachment})}/>
 						</Form.Item>
 						<Form.Item>
-							<Button type="submit" htmlType="submit" loading={isLoading} onClick={setView}>
+							<Button type="submit" htmlType="submit" loading={isLoading}>
 								Save	
 							</Button>
 						</Form.Item>
