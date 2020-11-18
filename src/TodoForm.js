@@ -25,7 +25,7 @@ class TodoForm extends React.Component {
 	}
 
 	handleSubmit() {
-		const { addTodo } = this.props;
+		const { addTodo, setView } = this.props;
 		const { priority, task, startTime, endTime, attachment } = this.state;
 		const newTodo = {
 			priority,
@@ -51,8 +51,7 @@ class TodoForm extends React.Component {
 			.then( todo => {
 				addTodo( todo );
 		 		this.setState( { isLoading: false } );
-				// Change the route
-				this.props.history.push('/');
+				setView();
 			} )
 	}
 
