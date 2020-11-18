@@ -1,6 +1,5 @@
 import React from 'react';
 import { Space, Button, Form } from 'antd';
-import Category from './Category';
 import Priority from './Priority';
 import Task from './Task';
 import DateAndTimePicker from './DateAndTimePicker';
@@ -14,7 +13,6 @@ class TodoForm extends React.Component {
 	constructor( props ) {
 		super( props );
 		this.state = {
-			category: '',
 			priority: '',
 			task: '',
 			endTime: null,
@@ -28,9 +26,8 @@ class TodoForm extends React.Component {
 
 	handleSubmit() {
 		const { addTodo } = this.props;
-		const { category, priority, task, startTime, endTime, attachment } = this.state;
+		const { priority, task, startTime, endTime, attachment } = this.state;
 		const newTodo = {
-			category,
 			priority,
 			task,
 			startTime,
@@ -67,9 +64,6 @@ class TodoForm extends React.Component {
 				<h1 className='todo-form-header'>Add</h1>
 				<Form method='post' name='forminfo' onFinish={this.handleSubmit}>
 					<Space direction="vertical">
-						<Form.Item>
-							<Category onChange={category=>this.setState({category})}/>
-						</Form.Item>
 						<Form.Item>
 							<Priority onChange={priority=>this.setState({priority})}/>
 						</Form.Item>

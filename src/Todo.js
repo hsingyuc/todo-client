@@ -21,7 +21,6 @@ class Todo extends React.Component {
 
 				<div>
 					<h1>{todo.task}</h1>
-					<p>Category: {todo.category}</p>
 					<p>Priority: {todo.priority}</p>
 					<p>Start time: {todo.startTime}</p>
 					<p>End time: {todo.endTime}</p>
