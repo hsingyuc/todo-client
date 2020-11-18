@@ -15,7 +15,7 @@ class HomeAction extends React.Component {
 	}
 
 	setInput(event) {
-		const input = event.target.value;
+		const input = event.target.value.toLowerCase();
 		this.setState( { input } );
 	}
 
@@ -24,7 +24,7 @@ class HomeAction extends React.Component {
 		if ( ! input.length ) {
 			return [];
 		}
-		return todos.filter( ( todo ) => todo.task.indexOf(input) >= 0 );
+		return todos.filter( ( todo ) => todo.task.toLowerCase().indexOf(input) >= 0 );
 	}
 
 	renderFilteredTodos() {
