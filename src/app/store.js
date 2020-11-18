@@ -14,7 +14,6 @@ export const setEditingId = id => ({
 export const addTodo = todo => ({
   type: 'ADD_TODO',
   payload: {
-    category: todo.category,
     priority: todo.priority,
     task: todo.task,
     startTime: todo.startTime,
