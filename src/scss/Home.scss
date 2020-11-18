@@ -4,6 +4,16 @@
 	.home-calendar {
 		width: 60%;
 		position: relative;
+		padding: 10px;
+		border-right: 1px solid lightgray;
+
+		.home-calendar_month {
+			position: absolute;
+			top: 18px;
+			left: 30px;
+			font-family: 'Bebas Neue', cursive;
+			font-size: 50px;
+		}
 
 		.ant-picker-calendar-header {
 			padding: 38px 15px;
@@ -34,7 +44,7 @@
 			}
 
 			.ant-select.ant-picker-calendar-month-select {
-				margin-right: 45px;
+				margin-right: 65px;
 				margin-left: 0px;
 				font-size: 20px;
 
@@ -52,18 +62,10 @@
 			display: none;
 		}
 
-		.home-calendar_month {
-			position: absolute;
-			top: 13px;
-			left: 30px;
-			font-family: 'Bebas Neue', cursive;
-			font-size: 50px;
-		}
-
 		.btn-add-todo {
 			position: absolute;
-			top: 44px;
-			right: 50px;
+			top: 53px;
+			right: 79px;
 			padding: 0;
 			outline: none;
 
@@ -79,8 +81,8 @@
 
 		.btn-search {
 			position: absolute;
-			top: 44px;
-			right: 15px;
+			top: 53px;
+			right: 39px;
 			border: 0;
 			outline: none;
 
@@ -131,6 +133,6 @@
 
 	.home-action {
 		width: 40%;
-		margin: 40px;
+		padding: 50px;
 	}
 }
