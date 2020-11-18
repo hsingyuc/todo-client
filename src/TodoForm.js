@@ -7,9 +7,8 @@ import DateAndTimePicker from './DateAndTimePicker';
 import Attachment from './Attachment';
 import { addTodo as addTodoAction } from './app/store';
 import { connect } from 'react-redux';
-import { Link, withRouter } from 'react-router-dom';
+import { withRouter } from 'react-router-dom';
 import { compose } from 'redux';
-import { ArrowLeft } from '@styled-icons/bootstrap'
 
 class TodoForm extends React.Component {
 	constructor( props ) {
@@ -62,15 +61,10 @@ class TodoForm extends React.Component {
 
 	render() {
 		const { isLoading } = this.state;
-		const { closeTodoForm } = this.props;
 		
 		return(
-			<div>
-				<button className='btn btn-arrow-left' onClick={closeTodoForm}>
-					<ArrowLeft size="25" />
-				</button>
-				Todo
-				<h1>Add</h1>
+			<div className='todo-form'>
+				<h1 className='todo-form-header'>Add</h1>
 				<Form method='post' name='forminfo' onFinish={this.handleSubmit}>
 					<Space direction="vertical">
 						<Form.Item>
@@ -82,7 +76,7 @@ class TodoForm extends React.Component {
 						<Form.Item name="task" rules={[{ required: true, message: 'Please input todo content.' }]}>
 							<Task onChange={task=>this.setState({task})}/>
 						</Form.Item>
-						<Form.Item name="date-and-time" rules={[{ required: true, message: 'Please input date and time.' }]}>
+						<Form.Item name="date-and-time" rules={[{ required: true, message: 'Please input the date and time.' }]}>
 							<DateAndTimePicker onChange={(startTime, endTime)=>this.setState({startTime, endTime})}/>
 						</Form.Item>
 						<Form.Item>

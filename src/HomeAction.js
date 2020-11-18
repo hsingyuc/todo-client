@@ -11,6 +11,7 @@ class HomeAction extends React.Component {
 			input: ''
 		}
 		this.setInput = this.setInput.bind(this);
+		this.renderLeftArrow = this.renderLeftArrow.bind(this);
 	}
 
 	setInput(event) {
@@ -31,7 +32,7 @@ class HomeAction extends React.Component {
 		const filteredTodos = this.getFilteredTodos( input );
 
 		if( !filteredTodos.length ) {
-			return <div>No todos found.</div> 
+			return <>No todos found.</> 
 		}
 
 		return filteredTodos.map( todo => { 
@@ -39,26 +40,39 @@ class HomeAction extends React.Component {
 		})
 	}
 
+	renderLeftArrow() {
+		const { setView } = this.props;
+
+		return(
+			<div className='btn-container'>
+				<button className='btn btn-arrow-left' onClick={ () => setView('todos') }>
+					<ArrowLeft size="25" />
+				</button>
+				<span className='btn-text'>Todo</span>
+			</div>
+		); 
+	}
+
 	render() {
-		const { selectedDate, getTodosForDate, setView, view } = this.props;
+		const { selectedDate, getTodosForDate, view } = this.props;
 		const todayTodos = selectedDate ? getTodosForDate(selectedDate) : [];
 		const { input } = this.state;
-		
+
 		switch(view) {
 			case 'todo-form':
-				return <div className='home-todo-form'><TodoForm closeTodoForm={ () => setView('todos') } /></div>;
+				return <>
+					{this.renderLeftArrow()}
+					<TodoForm />
+				</>;
 			case 'search':
-				return <div> 
-					<button className='btn btn-arrow-left' onClick={ () => setView('todos') }>
-						<ArrowLeft size="25"  />
-					</button>
-					Todo
+				return <>
+					{this.renderLeftArrow()}
 					<input className='home-search-input' type="text" id="myInput" onKeyUp={ (event) => this.setInput(event) } title="Type in a todo"></input>
 					{ input.length 
 						? this.renderFilteredTodos()
 						: <div>Search your todos.</div>
 					}
-				</div>;
+				</>;
 			default:
 				return <div className='home-todos'><Todos todos={ todayTodos } /></div>;
 		}

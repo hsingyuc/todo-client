@@ -1,4 +1,16 @@
+.btn-container{
+	display: flex;
+	margin-left: 25px;
+}
+
 .btn {
 	background: transparent;
-    border: 0px,
+	border: 0px,
+}
+
+.btn-text{
+	font-family: $secondary-font-family;
+	font-weight: 400;
+	font-size: 20px;
+	margin-left: 5px;
 }
