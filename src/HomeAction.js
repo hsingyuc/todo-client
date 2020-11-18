@@ -54,7 +54,7 @@ class HomeAction extends React.Component {
 	}
 
 	render() {
-		const { selectedDate, getTodosForDate, view } = this.props;
+		const { selectedDate, getTodosForDate, view, setView } = this.props;
 		const todayTodos = selectedDate ? getTodosForDate(selectedDate) : [];
 		const { input } = this.state;
 
@@ -62,7 +62,7 @@ class HomeAction extends React.Component {
 			case 'todo-form':
 				return <>
 					{this.renderLeftArrow()}
-					<TodoForm />
+					<TodoForm setView ={ () => setView('todos') } />
 				</>;
 			case 'search':
 				return <>
