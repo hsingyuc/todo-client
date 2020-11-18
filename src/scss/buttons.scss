@@ -1,5 +1,6 @@
 .btn-container{
 	display: flex;
+	margin-left: 25px;
 }
 
 .btn {
@@ -8,8 +9,8 @@
 }
 
 .btn-text{
-	font-family: 'Montserrat', sans-serif;
+	font-family: $secondary-font-family;
 	font-weight: 400;
 	font-size: 20px;
-	margin-left: 8px;
+	margin-left: 5px;
 }
