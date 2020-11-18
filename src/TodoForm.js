@@ -63,7 +63,7 @@ class TodoForm extends React.Component {
 		const { isLoading } = this.state;
 		
 		return(
-			<div className='home-todo-form'>
+			<div className='todo-form'>
 				<h1 className='todo-form-header'>Add</h1>
 				<Form method='post' name='forminfo' onFinish={this.handleSubmit}>
 					<Space direction="vertical">
@@ -76,7 +76,7 @@ class TodoForm extends React.Component {
 						<Form.Item name="task" rules={[{ required: true, message: 'Please input todo content.' }]}>
 							<Task onChange={task=>this.setState({task})}/>
 						</Form.Item>
-						<Form.Item name="date-and-time" rules={[{ required: true, message: 'Please input date and time.' }]}>
+						<Form.Item name="date-and-time" rules={[{ required: true, message: 'Please input the date and time.' }]}>
 							<DateAndTimePicker onChange={(startTime, endTime)=>this.setState({startTime, endTime})}/>
 						</Form.Item>
 						<Form.Item>

@@ -21,8 +21,12 @@ export default class Task extends React.Component {
 
 		return(
 			<Form>
-				<Form.Item name='todo' label="Todo">
-					<Input.TextArea onKeyUp={ event => this.handleTaskClick(event) } value={task} />
+				<Form.Item name='todo'>
+					<Input.TextArea 
+						onKeyUp={ event => this.handleTaskClick(event) } 
+						value={task}
+						placeholder='Up coming event...'
+					/>
 				</Form.Item>
 			</Form>
 		);
