@@ -83,7 +83,7 @@ class HomeAction extends React.Component {
 					</div>
 				</>;
 			default:
-				return <div className='home-todos'><Todos todos={ todayTodos } /></div>;
+				return <><Todos todos={ todayTodos } /></>;
 		}
 	}
 }
