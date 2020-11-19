@@ -1,0 +1,39 @@
+.search-container{
+	margin: 41px 30px;
+
+	.search-input {
+		border: 1px solid $primary-color;
+		height: 45px;
+		padding: 4px 15px;
+		font-size: 18px;
+		border-radius: 26px;
+		width: 24em;
+		font-weight: bold;
+		outline: none;
+		margin-bottom: 25px;
+	}
+}
+
+.filtered-todos-container{
+	margin-left: 15px;
+    font-family: $secondary-font-family;
+    font-weight: 100;
+	font-size: 25px;
+	
+	.filtered-todo {
+		margin-bottom: 10px;
+		font-weight: 400;
+		
+		a {
+			color: $secondary-color;
+		}
+
+		&:hover {
+			box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0);
+			
+			a {
+				color: $tertiary-color;
+			}
+		}
+	}
+}
