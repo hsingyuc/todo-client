@@ -25,12 +25,10 @@ export default class Todos extends React.PureComponent {
 
 					{ todos.map( todo => {
 						return(
-							<div key={todo.id}>
-								<div className='timeline-todo'>
-									<Link to={`/todos/${todo.id}`}>
-										{todo.task}
-									</Link>
-								</div>
+							<div className='timeline-todo' key={todo.id}>
+								<Link to={`/todos/${todo.id}`}>
+									{todo.task}
+								</Link>
 							</div>
 						)
 					} ) }
@@ -49,8 +47,10 @@ export default class Todos extends React.PureComponent {
 		const { todos } = this.props;
 		
 		return(
-			<div>
-				{this.hasPrimary(todos) ? `You have some important tasks to do today.` : `Today is a great day!`}
+			<div className='todos-container'>
+				<div className='todos-container-header'>
+					{this.hasPrimary(todos) ? `You have some important tasks to do today.` : `Today is a great day!`}
+				</div>
 				{this.renderTimeline(todos)}
 			</div>
 		);
