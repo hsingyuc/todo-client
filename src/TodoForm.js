@@ -57,7 +57,6 @@ class TodoForm extends React.Component {
 
 	render() {
 		const { isLoading } = this.state;
-		const { setView } = this.props;
 		
 		return(
 			<div className='todo-form'>
@@ -77,7 +76,7 @@ class TodoForm extends React.Component {
 							<Attachment onUpload={attachment=>this.setState({attachment})}/>
 						</Form.Item>
 						<Form.Item>
-							<Button type="submit" htmlType="submit" loading={isLoading} onClick={setView}>
+							<Button type="submit" htmlType="submit" loading={isLoading}>
 								Save	
 							</Button>
 						</Form.Item>
