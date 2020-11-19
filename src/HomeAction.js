@@ -36,7 +36,7 @@ class HomeAction extends React.Component {
 		}
 
 		return filteredTodos.map( todo => { 
-			return <div key={todo.id}>{todo.task}</div> 
+			return <div className='filtered-todo' key={todo.id}>{todo.task}</div> 
 		})
 	}
 
@@ -67,11 +67,15 @@ class HomeAction extends React.Component {
 			case 'search':
 				return <>
 					{this.renderLeftArrow()}
-					<input className='home-search-input' type="text" id="myInput" onKeyUp={ (event) => this.setInput(event) } title="Type in a todo"></input>
-					{ input.length 
-						? this.renderFilteredTodos()
-						: <div>Search your todos.</div>
-					}
+					<div className='search-container'>
+						<input className='search-input' type="text" id="myInput" onKeyUp={ (event) => this.setInput(event) } title="Type in a todo"></input>
+						<div className='filtered-todos-container'>
+							{ input.length 
+								? this.renderFilteredTodos()
+								: <div>Search your todos.</div>
+							}
+						</div>
+					</div>
 				</>;
 			default:
 				return <div className='home-todos'><Todos todos={ todayTodos } /></div>;
