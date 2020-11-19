@@ -3,6 +3,7 @@ import { ArrowLeft } from '@styled-icons/bootstrap'
 import TodoForm from './TodoForm';
 import Todos from './Todos';
 import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
 
 class HomeAction extends React.Component {
 	constructor( props ) {
@@ -36,7 +37,11 @@ class HomeAction extends React.Component {
 		}
 
 		return filteredTodos.map( todo => { 
-			return <div className='filtered-todo' key={todo.id}>{todo.task}</div> 
+			return <div className='filtered-todo' key={todo.id}>
+				<Link to={`/todos/${todo.id}`}>
+					{todo.task}
+				</Link>
+			</div> 		
 		})
 	}
 

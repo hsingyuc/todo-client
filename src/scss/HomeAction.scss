@@ -23,11 +23,17 @@
 	.filtered-todo {
 		margin-bottom: 10px;
 		font-weight: 400;
-		color: $secondary-color;
+		
+		a {
+			color: $secondary-color;
+		}
 
-		&:hover{
+		&:hover {
 			box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0);
-			color: $tertiary-color;
+			
+			a {
+				color: $tertiary-color;
+			}
 		}
 	}
 }
