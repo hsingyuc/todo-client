@@ -22,19 +22,20 @@ export default class Todos extends React.PureComponent {
 				const todos = todosByTime[ time ];
 
 				return <div className='timeline'>
-					<div className='timeline-time'>{time}</div>
-
-					{ todos.map( todo => {
-						return(<>
-							<div className='timeline-todo' key={todo.id}>
-								<Link to={`/todos/${todo.id}`}>
-									{todo.task}
-								</Link>
+							<div className='time-todo'>
+								<div className='timeline-time'>{time}</div>
+								{ todos.map( todo => {
+									return(<>
+										<div className='timeline-todo' key={todo.id}>
+											<Link to={`/todos/${todo.id}`}>
+												{todo.task}
+											</Link>
+										</div>
+									</>
+									)
+								} ) }
 							</div>
 							<DeleteButton />
-						</>
-						)
-					} ) }
 				</div>
 			})
 		);
