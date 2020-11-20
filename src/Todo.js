@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import { compose } from '@reduxjs/toolkit';
 import ButtonLeft from './ButtonLeft';
+import * as moment from 'moment';
 
 class Todo extends React.Component {
 	render() {
@@ -12,6 +13,10 @@ class Todo extends React.Component {
 		if( !todo ) {
 			return 'Loading...';
 		}
+		
+		const formatStartTime = moment.unix(todo.startTime).format('MMM-DD-YYYY H:mm');
+		const formatEndTime = moment.unix(todo.endTime).format('MMM-DD-YYYY H:mm');
+		
 		return(
 			<div className='todo-container'>
 				<ButtonLeft onClick={ () => this.props.history.push('/') } />
@@ -19,9 +24,9 @@ class Todo extends React.Component {
 					<h1 className='todo-head'>{todo.task}</h1>
 					<div className='todo-body'>
 						<div className='todo-text'>
-							<p>Priority: {todo.priority}</p>
-							<p>Start time: {todo.startTime}</p>
-							<p>End time: {todo.endTime}</p>
+							<p>Priority : {todo.priority}</p>
+							<p>Start time : {formatStartTime}</p>
+							<p>End time : {formatEndTime}</p>
 						</div>
 						{
 							todo.attachment
