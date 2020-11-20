@@ -1,6 +1,7 @@
 import React from 'react';
 import * as moment from 'moment';
 import { Link } from 'react-router-dom';
+import DeleteButton from './DeleteButton';
 
 export default class Todos extends React.PureComponent {
 	renderTimeline(todos) {
@@ -20,18 +21,19 @@ export default class Todos extends React.PureComponent {
 			Object.keys( todosByTime ).sort( (a,b) => a.split('-')[0].replace(':', '') - b.split('-')[0].replace(':', '') ).map( time => {
 				const todos = todosByTime[ time ];
 
-				return <div className='timeline'>
-					<div className='timeline-time'>{time}</div>
-
-					{ todos.map( todo => {
-						return(
-							<div className='timeline-todo' key={todo.id}>
-								<Link to={`/todos/${todo.id}`}>
-									{todo.task}
-								</Link>
-							</div>
-						)
-					} ) }
+				return <div className='timeline' key={time}>
+							<div className='timeline-time'>{time}</div>
+							{ todos.map( todo => {
+								return(<div key={todo.id}>
+									<div className='timeline-todo'>
+										<Link to={`/todos/${todo.id}`}>
+											{todo.task}
+										</Link>
+									</div>
+									<DeleteButton id={todo.id} />
+								</div>
+								)
+							} ) }
 				</div>
 			})
 		);
