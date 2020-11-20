@@ -14,7 +14,7 @@ class Todo extends React.Component {
 		}
 		return(
 			<div className='todo-container'>
-				<ButtonLeft />
+				<ButtonLeft onClick={ () => this.props.history.push('/') } />
 				<div className='todo-info'>
 					<h1 className='todo-head'>{todo.task}</h1>
 					<div className='todo-body'>

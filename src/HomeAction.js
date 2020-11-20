@@ -52,12 +52,12 @@ class HomeAction extends React.Component {
 		switch(view) {
 			case 'todo-form':
 				return <>
-					<ButtonLeft setView = { () => setView('todos') } />
-					<TodoForm setView ={ () => setView('todos') } />
+					<ButtonLeft onClick={ () => setView('todos') } />
+					<TodoForm setView={ () => setView('todos') } />
 				</>;
 			case 'search':
 				return <>
-					<ButtonLeft />
+					<ButtonLeft onClick={ () => setView('todos') } />
 					<div className='search-container'>
 						<input className='search-input' type="text" id="myInput" onKeyUp={ (event) => this.setInput(event) } title="Type in a todo"></input>
 						<div className='filtered-todos-container'>
