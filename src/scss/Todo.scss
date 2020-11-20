@@ -1,5 +1,51 @@
 .todo-container {
-	img {
-		width: 100%;
+	.btn-container {
+		margin-top: 30px;
+	}
+
+	.todo-info {
+		margin-left: 70px;
+    	margin-right: 70px;
+		padding: 15px 20px;
+		display: flex;
+		flex-direction: column;
+		font-family: 'Montserrat';
+
+		.todo-body{
+			display: flex;
+
+			.todo-text {
+				width: 40%;
+
+				p {
+					margin-left: 15px;
+				}
+	
+				&:after {
+					content: '';
+					position: fixed;
+					top: 0;
+					width: 60%;
+					background: #eff4fc;
+					height: 100%;
+					left: 0;
+					z-index: -1;
+				}
+			}
+	
+			.todo-file {
+				p {
+					margin-bottom: 8px;
+				}
+	
+				img {
+					max-width: 95%;
+					border: 1px solid black;
+					border-radius: 5px;
+					margin-bottom: 10px;
+					max-height: 30em;
+				}
+			}
+		}
 	}
 }
