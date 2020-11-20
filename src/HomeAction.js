@@ -1,9 +1,9 @@
 import React from 'react';
-import { ArrowLeft } from '@styled-icons/bootstrap'
 import TodoForm from './TodoForm';
 import Todos from './Todos';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
+import ButtonLeft from './ButtonLeft';
 
 class HomeAction extends React.Component {
 	constructor( props ) {
@@ -12,7 +12,6 @@ class HomeAction extends React.Component {
 			input: ''
 		}
 		this.setInput = this.setInput.bind(this);
-		this.renderLeftArrow = this.renderLeftArrow.bind(this);
 	}
 
 	setInput(event) {
@@ -45,19 +44,6 @@ class HomeAction extends React.Component {
 		})
 	}
 
-	renderLeftArrow() {
-		const { setView } = this.props;
-
-		return(
-			<div className='btn-container'>
-				<button className='btn btn-arrow-left' onClick={ () => setView('todos') }>
-					<ArrowLeft size="25" />
-				</button>
-				<span className='btn-text'>Todo</span>
-			</div>
-		); 
-	}
-
 	render() {
 		const { selectedDate, getTodosForDate, view, setView } = this.props;
 		const todayTodos = selectedDate ? getTodosForDate(selectedDate) : [];
@@ -66,12 +52,12 @@ class HomeAction extends React.Component {
 		switch(view) {
 			case 'todo-form':
 				return <>
-					{this.renderLeftArrow()}
-					<TodoForm setView ={ () => setView('todos') } />
+					<ButtonLeft onClick={ () => setView('todos') } />
+					<TodoForm setView={ () => setView('todos') } />
 				</>;
 			case 'search':
 				return <>
-					{this.renderLeftArrow()}
+					<ButtonLeft onClick={ () => setView('todos') } />
 					<div className='search-container'>
 						<input className='search-input' type="text" id="myInput" onKeyUp={ (event) => this.setInput(event) } title="Type in a todo"></input>
 						<div className='filtered-todos-container'>

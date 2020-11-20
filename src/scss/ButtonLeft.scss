@@ -7,6 +7,10 @@
 		&:focus {
 			outline: none;
 		}
+
+		&:hover {
+			color: lightgray;
+		}
 	}
 	
 	.btn-text{
