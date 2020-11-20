@@ -52,7 +52,7 @@ const reducer = ( state = initialState, action ) => {
       };
     case 'REMOVE_TODO':
       const newTodos = [...state.todos];
-      const index = newTodos.findIndex( t => t.id === action.id );
+      const index = newTodos.findIndex( t => t.id === action.payload );
       newTodos.splice( index, 1 );
       return {
         ...state,
