@@ -1,12 +1,13 @@
 import React from 'react';
 import { Input, Space, Button, Form } from 'antd';
-import DateAndTimePicker from './DateAndTimePicker';
 import Attachment from './Attachment';
 import { addTodo as addTodoAction } from './app/store';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import { compose } from 'redux';
 import { Menu } from 'antd';
+import { DatePicker } from 'antd';
+import moment from 'moment';
 
 class TodoForm extends React.Component {
 	constructor( props ) {
@@ -14,10 +15,16 @@ class TodoForm extends React.Component {
 		this.state = {
 			priority: props.priority || '',
 			task: props.task || '',
-			endTime: null,
-			startTime: null,
+			endTime: props.endTime || null,
+			startTime: props.startTime || null,
 			attachment: null,
-			isLoading: false
+			isLoading: false,
+			time: ! props.startTime
+				? null
+				: [
+					moment.unix(props.startTime.toString()),
+					moment.unix(props.endTime.toString())
+				]
 		}
 
 		this.handleSubmit = this.handleSubmit.bind(this);
@@ -57,7 +64,8 @@ class TodoForm extends React.Component {
 
 	render() {
 		const { isLoading, priority } = this.state;
-		
+		const { RangePicker } = DatePicker;
+
 		return(
 			<div className='todo-form'>
 				<h1 className='todo-form-header'>{ this.props.id ?  'Edit' : 'Add' }</h1>
@@ -82,8 +90,15 @@ class TodoForm extends React.Component {
 								placeholder='Up coming event...'
 							/>
 						</Form.Item>
-						<Form.Item name="date-and-time" rules={[{ required: true, message: 'Please input the date and time.' }]}>
-							<DateAndTimePicker onChange={(startTime, endTime)=>this.setState({startTime, endTime})}/>
+						<Form.Item name="time" rules={[{ required: true, message: 'Please input the date and time.' }]}>
+							<RangePicker
+								onChange={ datesAndTime => {
+									this.setState({
+									startTime: datesAndTime[0] ? datesAndTime[0].unix() : null,
+									endTime:  datesAndTime[1] ? datesAndTime[1].unix() : null
+								}) }}
+								showTime={{ format: 'HH:mm' }}
+							/>
 						</Form.Item>
 						<Form.Item>
 							<Attachment onUpload={attachment=>this.setState({attachment})}/>
