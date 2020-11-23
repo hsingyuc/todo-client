@@ -1,7 +1,6 @@
 import React from 'react';
-import { Space, Button, Form } from 'antd';
+import { Input, Space, Button, Form } from 'antd';
 import Priority from './Priority';
-import Task from './Task';
 import DateAndTimePicker from './DateAndTimePicker';
 import Attachment from './Attachment';
 import { addTodo as addTodoAction } from './app/store';
@@ -13,8 +12,8 @@ class TodoForm extends React.Component {
 	constructor( props ) {
 		super( props );
 		this.state = {
-			priority: '',
-			task: '',
+			priority: props.priority || '',
+			task: props.task || '',
 			endTime: null,
 			startTime: null,
 			attachment: null,
@@ -35,6 +34,7 @@ class TodoForm extends React.Component {
 			attachment
 		};
 		
+		// @Todo check if id ? todos/id : /todos
 		this.setState( { isLoading: true } );
 		fetch('http://localhost:3000/todos',{
 			method: 'post',
@@ -56,18 +56,21 @@ class TodoForm extends React.Component {
 	}
 
 	render() {
-		const { isLoading } = this.state;
+		const { isLoading, task } = this.state;
 		
 		return(
 			<div className='todo-form'>
-				<h1 className='todo-form-header'>Add</h1>
-				<Form method='post' name='forminfo' onFinish={this.handleSubmit}>
+				<h1 className='todo-form-header'>{ this.props.id ?  'Edit' : 'Add' }</h1>
+				<Form method='post' name='forminfo' onFinish={this.handleSubmit} initialValues={ this.state }>
 					<Space direction="vertical">
 						<Form.Item>
 							<Priority onChange={priority=>this.setState({priority})}/>
 						</Form.Item>
 						<Form.Item name="task" rules={[{ required: true, message: 'Please input todo content.' }]}>
-							<Task onChange={task=>this.setState({task})}/>
+							<Input.TextArea 
+								onKeyUp={ event => this.setState({ task: event.target.value }) } 
+								placeholder='Up coming event...'
+							/>
 						</Form.Item>
 						<Form.Item name="date-and-time" rules={[{ required: true, message: 'Please input the date and time.' }]}>
 							<DateAndTimePicker onChange={(startTime, endTime)=>this.setState({startTime, endTime})}/>
