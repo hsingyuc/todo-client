@@ -1,12 +1,12 @@
 import React from 'react';
 import { Input, Space, Button, Form } from 'antd';
-import Priority from './Priority';
 import DateAndTimePicker from './DateAndTimePicker';
 import Attachment from './Attachment';
 import { addTodo as addTodoAction } from './app/store';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import { compose } from 'redux';
+import { Menu } from 'antd';
 
 class TodoForm extends React.Component {
 	constructor( props ) {
@@ -56,15 +56,25 @@ class TodoForm extends React.Component {
 	}
 
 	render() {
-		const { isLoading, task } = this.state;
+		const { isLoading, priority } = this.state;
 		
 		return(
 			<div className='todo-form'>
 				<h1 className='todo-form-header'>{ this.props.id ?  'Edit' : 'Add' }</h1>
 				<Form method='post' name='forminfo' onFinish={this.handleSubmit} initialValues={ this.state }>
 					<Space direction="vertical">
-						<Form.Item>
-							<Priority onChange={priority=>this.setState({priority})}/>
+						<Form.Item name="priority">
+							<Menu selectedKeys={[ priority ]} mode="horizontal">
+								<Menu.Item key="primary" onClick={ () => this.setState( { priority: 'primary' } ) }>
+									Primary
+								</Menu.Item>
+								<Menu.Item key="secondary" onClick={ () => this.setState( { priority: 'secondary' } ) }>
+									Secondary
+								</Menu.Item>
+								<Menu.Item key="tertiary" onClick={ () => this.setState( { priority: 'tertiary' } ) }>
+									Tertiary
+								</Menu.Item>
+							</Menu>
 						</Form.Item>
 						<Form.Item name="task" rules={[{ required: true, message: 'Please input todo content.' }]}>
 							<Input.TextArea 
