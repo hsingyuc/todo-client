@@ -75,6 +75,7 @@ class TodoForm extends React.Component {
 			} )
 			.then( todo => {
 				editTodo( todo );
+				this.setState( { isLoading: false } );
 				finishEditing();
 			} )
 	}
