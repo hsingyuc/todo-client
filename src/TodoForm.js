@@ -1,7 +1,7 @@
 import React from 'react';
 import { Input, Space, Button, Form } from 'antd';
 import Attachment from './Attachment';
-import { addTodo as addTodoAction } from './app/store';
+import { addTodo as addTodoAction, editTodo as editTodoAction } from './app/store';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import { compose } from 'redux';
@@ -31,7 +31,7 @@ class TodoForm extends React.Component {
 	}
 
 	handleSubmit() {
-		const { addTodo, setView } = this.props;
+		const { addTodo, setView, id, finishEditing, editTodo } = this.props;
 		const { priority, task, startTime, endTime, attachment } = this.state;
 		const newTodo = {
 			priority,
@@ -41,9 +41,10 @@ class TodoForm extends React.Component {
 			attachment
 		};
 		
-		// @Todo check if id ? todos/id : /todos
 		this.setState( { isLoading: true } );
-		fetch('http://localhost:3000/todos',{
+		
+		! id
+		? fetch(`http://localhost:3000/todos`,{
 			method: 'post',
 			headers: {
 				'Content-Type': 'application/json'
@@ -59,6 +60,22 @@ class TodoForm extends React.Component {
 				addTodo( todo );
 		 		this.setState( { isLoading: false } );
 				setView();
+			} )
+		: fetch(`http://localhost:3000/todos/${id}`,{
+			method: 'put',
+			headers: {
+				'Content-Type': 'application/json'
+			},
+			body: JSON.stringify(newTodo)
+		})
+			.then( response => {
+				if( response.status === 200 ) {
+					return response.json();
+				}
+			} )
+			.then( todo => {
+				editTodo( todo );
+				finishEditing();
 			} )
 	}
 
@@ -116,7 +133,8 @@ class TodoForm extends React.Component {
 }
 
 const mapDispatchToProps = dispatch => ({
-	addTodo: todo => dispatch( addTodoAction(todo) )
+	addTodo: todo => dispatch( addTodoAction(todo) ),
+	editTodo: todo => dispatch( editTodoAction(todo) )
 });
 
 export default compose(

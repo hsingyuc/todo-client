@@ -16,9 +16,9 @@ class Todo extends React.Component {
 
 	render() {
 		const { todos, match } = this.props;
-		const todo = todos.find( t => t.id === parseInt(match.params.id));
 		const { isEditing } = this.state;
-
+		const todo = todos.find( t => t.id === parseInt(match.params.id));
+		
 		if( !todo ) {
 			return 'Loading...';
 		}
@@ -58,7 +58,6 @@ class Todo extends React.Component {
 
 const mapStateToProp = state => ({
 	todos: state.todos,
-	editingId: state.editingId
 });
 
 export default compose(

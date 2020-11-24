@@ -1,6 +1,5 @@
 import React from 'react';
 import { 
-  setEditingId, 
   setTodos as setTodosAction,
   setUser as setUserAction
  } from './app/store';
@@ -73,11 +72,9 @@ class App extends React.Component {
 
 const mapStateToProps = state => ({
   todos: state.todos,
-  editingId: state.editingId
 });
 
 const mapDispatchToProps = dispatch => ({
-	editId: id => dispatch(setEditingId(id)),
 	setTodos: todos => dispatch(setTodosAction(todos)),
 	setUser: user => dispatch(setUserAction(user)),
 });
