@@ -24,7 +24,7 @@ export default class Todos extends React.PureComponent {
 				return <div className='timeline' key={time}>
 							<div className='timeline-time'>{time}</div>
 							{ todos.map( todo => {
-								return(<div key={todo.id}>
+								return(<div key={todo.id} className='todo-btn-wrapper'>
 									<div className='timeline-todo'>
 										<Link to={`/todos/${todo.id}`}>
 											{todo.task}

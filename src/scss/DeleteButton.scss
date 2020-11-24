@@ -1,15 +1,12 @@
 .btn-delete {
-	position: absolute;
-    top: 16px;
-    left: 392px;
 	border: 0;
-	height: 40px;
-    font-size: 0.7em;
-    border-radius: 26px;
-    width: 7.5em;
+    height: 25px;
+    font-size: 8px;
+    border-radius: 15px;
+    width: 8.8em;
     color: white;
     background-color: #443669;
-	font-weight: bold;
+    font-weight: bold;
 	
 	&:focus {
 		outline: none;
