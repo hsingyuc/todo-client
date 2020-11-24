@@ -11,19 +11,24 @@
 	border-radius: 5px;
 	box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0);
 	font-family: $secondary-font-family;
-	position: relative;
 
 	.timeline-time{
 		font-size: 16px;
 	}
 
-	.timeline-todo a {
-		color: $secondary-color;
-		font-size: 20px;
-		font-weight: 700;
+	.todo-btn-wrapper {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
 
-		&:hover {
-			color: $tertiary-color;
+		.timeline-todo a {
+			color: $secondary-color;
+			font-size: 20px;
+			font-weight: 700;
+	
+			&:hover {
+				color: $tertiary-color;
+			}
 		}
 	}
 }
