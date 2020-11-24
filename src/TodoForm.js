@@ -1,31 +1,37 @@
 import React from 'react';
-import { Space, Button, Form } from 'antd';
-import Priority from './Priority';
-import Task from './Task';
-import DateAndTimePicker from './DateAndTimePicker';
+import { Input, Space, Button, Form } from 'antd';
 import Attachment from './Attachment';
-import { addTodo as addTodoAction } from './app/store';
+import { addTodo as addTodoAction, editTodo as editTodoAction } from './app/store';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import { compose } from 'redux';
+import { Menu } from 'antd';
+import { DatePicker } from 'antd';
+import moment from 'moment';
 
 class TodoForm extends React.Component {
 	constructor( props ) {
 		super( props );
 		this.state = {
-			priority: '',
-			task: '',
-			endTime: null,
-			startTime: null,
-			attachment: null,
-			isLoading: false
+			priority: props.priority || '',
+			task: props.task || '',
+			endTime: props.endTime || null,
+			startTime: props.startTime || null,
+			attachment: props.attachment || null,
+			isLoading: false,
+			time: ! props.startTime
+				? null
+				: [
+					moment.unix(props.startTime.toString()),
+					moment.unix(props.endTime.toString())
+				]
 		}
 
 		this.handleSubmit = this.handleSubmit.bind(this);
 	}
 
 	handleSubmit() {
-		const { addTodo, setView } = this.props;
+		const { addTodo, setView, id, finishEditing, editTodo } = this.props;
 		const { priority, task, startTime, endTime, attachment } = this.state;
 		const newTodo = {
 			priority,
@@ -36,7 +42,9 @@ class TodoForm extends React.Component {
 		};
 		
 		this.setState( { isLoading: true } );
-		fetch('http://localhost:3000/todos',{
+		
+		! id
+		? fetch(`http://localhost:3000/todos`,{
 			method: 'post',
 			headers: {
 				'Content-Type': 'application/json'
@@ -53,24 +61,62 @@ class TodoForm extends React.Component {
 		 		this.setState( { isLoading: false } );
 				setView();
 			} )
+		: fetch(`http://localhost:3000/todos/${id}`,{
+			method: 'put',
+			headers: {
+				'Content-Type': 'application/json'
+			},
+			body: JSON.stringify(newTodo)
+		})
+			.then( response => {
+				if( response.status === 200 ) {
+					return response.json();
+				}
+			} )
+			.then( todo => {
+				editTodo( todo );
+				this.setState( { isLoading: false } );
+				finishEditing();
+			} )
 	}
 
 	render() {
-		const { isLoading } = this.state;
-		
+		const { isLoading, priority } = this.state;
+		const { RangePicker } = DatePicker;
+
 		return(
 			<div className='todo-form'>
-				<h1 className='todo-form-header'>Add</h1>
-				<Form method='post' name='forminfo' onFinish={this.handleSubmit}>
+				<h1 className='todo-form-header'>{ this.props.id ?  'Edit' : 'Add' }</h1>
+				<Form method='post' name='forminfo' onFinish={this.handleSubmit} initialValues={ this.state }>
 					<Space direction="vertical">
-						<Form.Item>
-							<Priority onChange={priority=>this.setState({priority})}/>
+						<Form.Item name="priority">
+							<Menu selectedKeys={[ priority ]} mode="horizontal">
+								<Menu.Item key="primary" onClick={ () => this.setState( { priority: 'primary' } ) }>
+									Primary
+								</Menu.Item>
+								<Menu.Item key="secondary" onClick={ () => this.setState( { priority: 'secondary' } ) }>
+									Secondary
+								</Menu.Item>
+								<Menu.Item key="tertiary" onClick={ () => this.setState( { priority: 'tertiary' } ) }>
+									Tertiary
+								</Menu.Item>
+							</Menu>
 						</Form.Item>
 						<Form.Item name="task" rules={[{ required: true, message: 'Please input todo content.' }]}>
-							<Task onChange={task=>this.setState({task})}/>
+							<Input.TextArea 
+								onKeyUp={ event => this.setState({ task: event.target.value }) } 
+								placeholder='Up coming event...'
+							/>
 						</Form.Item>
-						<Form.Item name="date-and-time" rules={[{ required: true, message: 'Please input the date and time.' }]}>
-							<DateAndTimePicker onChange={(startTime, endTime)=>this.setState({startTime, endTime})}/>
+						<Form.Item name="time" rules={[{ required: true, message: 'Please input the date and time.' }]}>
+							<RangePicker
+								onChange={ datesAndTime => {
+									this.setState({
+									startTime: datesAndTime[0] ? datesAndTime[0].unix() : null,
+									endTime:  datesAndTime[1] ? datesAndTime[1].unix() : null
+								}) }}
+								showTime={{ format: 'HH:mm' }}
+							/>
 						</Form.Item>
 						<Form.Item>
 							<Attachment onUpload={attachment=>this.setState({attachment})}/>
@@ -88,7 +134,8 @@ class TodoForm extends React.Component {
 }
 
 const mapDispatchToProps = dispatch => ({
-	addTodo: todo => dispatch( addTodoAction(todo) )
+	addTodo: todo => dispatch( addTodoAction(todo) ),
+	editTodo: todo => dispatch( editTodoAction(todo) )
 });
 
 export default compose(

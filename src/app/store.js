@@ -2,13 +2,12 @@ import { configureStore } from '@reduxjs/toolkit';
 
 const initialState = {
   todos:[],
-  editingId: null,
   user: null
 };
 
-export const setEditingId = id => ({
-  type: 'SET_EDITING_ID',
-  payload: id
+export const editTodo = todo => ({
+  type: 'EDIT_TODO',
+  payload: todo
 });
 
 export const addTodo = todo => ({
@@ -40,16 +39,21 @@ export const setUser = user => ({
 
 const reducer = ( state = initialState, action ) => {
   switch(action.type) {
-    case 'SET_EDITING_ID':
+    case 'EDIT_TODO':
+      const todos = [...state.todos];
+      const editedindex = todos.findIndex(todo=>todo.id===action.payload.id);
+      if (editedindex !== -1) {
+        todos[editedindex] = action.payload;
+      }
       return {
         ...state,
-        editingId: action.payload
+        todos
       };
-      case 'ADD_TODO':
-        return {
-          ...state,
-        todos: [ ...state.todos, action.payload ]
-      };
+    case 'ADD_TODO':
+      return {
+        ...state,
+      todos: [ ...state.todos, action.payload ]
+    };
     case 'REMOVE_TODO':
       const newTodos = [...state.todos];
       const index = newTodos.findIndex( t => t.id === action.payload );
