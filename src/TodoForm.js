@@ -17,7 +17,7 @@ class TodoForm extends React.Component {
 			task: props.task || '',
 			endTime: props.endTime || null,
 			startTime: props.startTime || null,
-			attachment: null,
+			attachment: props.attachment || null,
 			isLoading: false,
 			time: ! props.startTime
 				? null
