@@ -1,6 +1,6 @@
 .todo-container {
 	position: relative;
-	
+
 	.btn-container {
 		margin-top: 30px;
 	}
@@ -17,6 +17,10 @@
 		color: white;
 		background-color: #443669;
 		font-weight: bold;
+
+		&:focus {
+			outline: none;
+		}
 	}
 
 	.todo-info {
