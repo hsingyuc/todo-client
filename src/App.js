@@ -1,7 +1,7 @@
 import React from 'react';
 import { 
   setTodos as setTodosAction,
- } from './app/store';
+ } from './store';
 import { connect } from 'react-redux';
 import {
   BrowserRouter as Router,

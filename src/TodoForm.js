@@ -1,7 +1,7 @@
 import React from 'react';
 import { Input, Space, Button, Form } from 'antd';
 import Attachment from './Attachment';
-import { addTodo as addTodoAction, editTodo as editTodoAction } from './app/store';
+import { addTodo as addTodoAction, editTodo as editTodoAction } from './store';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import { compose } from 'redux';

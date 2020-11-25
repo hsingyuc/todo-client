@@ -1,5 +1,5 @@
 import React from 'react';
-import { removeTodo as removeTodoAction } from './app/store';
+import { removeTodo as removeTodoAction } from './store';
 import { connect } from 'react-redux';
 
 class DeleteButton extends React.PureComponent {
