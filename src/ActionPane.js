@@ -5,9 +5,9 @@ import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import ButtonLeft from './ButtonLeft';
 
-class HomeAction extends React.Component {
-	constructor( props ) {
-		super( props );
+class ActionPane extends React.Component {
+	constructor(props) {
+		super(props);
 		this.state = {
 			input: ''
 		}
@@ -16,31 +16,31 @@ class HomeAction extends React.Component {
 
 	setInput(event) {
 		const input = event.target.value.toLowerCase();
-		this.setState( { input } );
+		this.setState({ input });
 	}
 
-	getFilteredTodos( input ) {
+	getFilteredTodos(input) {
 		const { todos } = this.props;
-		if ( ! input.length ) {
+		if (!input.length) {
 			return [];
 		}
-		return todos.filter( ( todo ) => todo.task.toLowerCase().indexOf(input) >= 0 );
+		return todos.filter((todo) => todo.task.toLowerCase().indexOf(input) >= 0);
 	}
 
 	renderFilteredTodos() {
 		const { input } = this.state;
-		const filteredTodos = this.getFilteredTodos( input );
+		const filteredTodos = this.getFilteredTodos(input);
 
-		if( !filteredTodos.length ) {
-			return <>No todos found.</> 
+		if (!filteredTodos.length) {
+			return <>No todos found.</>
 		}
 
-		return filteredTodos.map( todo => { 
+		return filteredTodos.map(todo => {
 			return <div className='filtered-todo' key={todo.id}>
 				<Link to={`/todos/${todo.id}`}>
 					{todo.task}
 				</Link>
-			</div> 		
+			</div>
 		})
 	}
 
@@ -49,19 +49,19 @@ class HomeAction extends React.Component {
 		const todayTodos = selectedDate ? getTodosForDate(selectedDate) : [];
 		const { input } = this.state;
 
-		switch(view) {
+		switch (view) {
 			case 'todo-form':
 				return <>
-					<ButtonLeft onClick={ () => setView('todos') } />
-					<TodoForm onFinish={ () => setView('todos') } />
+					<ButtonLeft onClick={() => setView('todos')} />
+					<TodoForm onFinish={() => setView('todos')} />
 				</>;
 			case 'search':
 				return <>
-					<ButtonLeft onClick={ () => setView('todos') } />
+					<ButtonLeft onClick={() => setView('todos')} />
 					<div className='search-container'>
-						<input className='search-input' type="text" id="myInput" onKeyUp={ (event) => this.setInput(event) } title="Type in a todo"></input>
+						<input className='search-input' type="text" id="myInput" onKeyUp={(event) => this.setInput(event)} title="Type in a todo"></input>
 						<div className='filtered-todos-container'>
-							{ input.length 
+							{input.length
 								? this.renderFilteredTodos()
 								: <div>Search your todos.</div>
 							}
@@ -69,7 +69,7 @@ class HomeAction extends React.Component {
 					</div>
 				</>;
 			default:
-				return <><Todos todos={ todayTodos } /></>;
+				return <><Todos todos={todayTodos} /></>;
 		}
 	}
 }
@@ -78,4 +78,4 @@ const mapStateToProps = state => ({
 	todos: state.todos,
 });
 
-export default connect(mapStateToProps, null)(HomeAction);
+export default connect(mapStateToProps, null)(ActionPane);
