@@ -1,4 +1,4 @@
-![App demo](http://todo-client/image/demo_photo.png)
+![App demo](image/demo_photo.png)
 
 # React-Redux-Express Todo app
 This is a sample react todo app done step-by-step.
