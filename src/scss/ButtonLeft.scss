@@ -3,6 +3,10 @@
 	margin-left: 25px;
 	margin-bottom: 30px;
 	
+	@media (max-width: 940px) {
+		margin-left: 0px;
+	}
+
 	.btn-arrow-left {
 		&:focus {
 			outline: none;

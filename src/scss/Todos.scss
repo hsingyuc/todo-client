@@ -2,7 +2,11 @@
 	margin-bottom: 38px;
     font-size: 1.6em;
     font-family: fangsong;
-    font-weight: 500;
+	font-weight: 500;
+	
+	@media (max-width: 940px) {
+		font-size: 1.3em;
+	}
 }
 
 .timeline {
@@ -20,11 +24,17 @@
 		display: flex;
 		align-items: center;
 		justify-content: space-between;
+		margin-bottom: 5px;
 
 		.timeline-todo a {
 			color: $secondary-color;
 			font-size: 20px;
 			font-weight: 700;
+			word-wrap: break-word;
+
+			@media (max-width: 940px) {
+				font-size: 15px;
+			}
 	
 			&:hover {
 				color: $tertiary-color;
