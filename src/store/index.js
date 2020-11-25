@@ -2,7 +2,6 @@ import { configureStore } from '@reduxjs/toolkit';
 
 const initialState = {
   todos:[],
-  user: null
 };
 
 export const editTodo = todo => ({
@@ -30,11 +29,6 @@ export const removeTodo = id => ({
 export const setTodos = todos => ({
   type: 'SET_TODOS',
   payload: todos
-});
-
-export const setUser = user => ({
-  type: 'SET_USER',
-  payload: user
 });
 
 const reducer = ( state = initialState, action ) => {
@@ -66,11 +60,6 @@ const reducer = ( state = initialState, action ) => {
       return {
         ...state,
         todos: action.payload
-      };
-    case 'SET_USER':
-      return {
-        ...state,
-        user: action.payload
       };
     default:
       return state;

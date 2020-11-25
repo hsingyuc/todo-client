@@ -1,8 +1,7 @@
 import React from 'react';
 import { 
   setTodos as setTodosAction,
-  setUser as setUserAction
- } from './app/store';
+ } from './store';
 import { connect } from 'react-redux';
 import {
   BrowserRouter as Router,
@@ -12,12 +11,11 @@ import {
 import Home from './Home';
 import Todos from './Todos';
 import TodoForm from './TodoForm';
-import Todo from './Todo';
+import TodoPage from './TodoPage';
 
 class App extends React.Component {
   componentDidMount() {
     this.getPosts();
-    this.getUser();
   }
 
   getPosts() {
@@ -32,18 +30,6 @@ class App extends React.Component {
     setTodos(newTodos);
   }
 
-  getUser() {
-    fetch('http://localhost:3000/users')
-      .then( response => response.json() )
-      .then( json => this.updateUser(json) )
-  }
-
-  updateUser( user ) {
-    const { setUser } = this.props;
-    const newUser = user;
-    setUser(newUser);
-  }
-
   render() {
     const { todos } = this.props;
 
@@ -53,7 +39,7 @@ class App extends React.Component {
         renders the first one that matches the current URL. */}
         <Switch>
           <Route path="/todos/:id">
-            <Todo />
+            <TodoPage />
           </Route>
           <Route path="/todos">
             <Todos todos={ todos } />
@@ -76,7 +62,6 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
 	setTodos: todos => dispatch(setTodosAction(todos)),
-	setUser: user => dispatch(setUserAction(user)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);
