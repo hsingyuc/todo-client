@@ -49,7 +49,7 @@ class Todo extends React.Component {
 							}
 						</div>
 					</div>
-					: <TodoForm { ...todo} finishEditing={ () => this.setState( {isEditing: false} ) } />
+					: <TodoForm { ...todo} onFinish={ () => this.setState( {isEditing: false} ) } />
 				}
 			</div>
 		);

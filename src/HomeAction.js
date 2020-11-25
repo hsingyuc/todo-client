@@ -53,7 +53,7 @@ class HomeAction extends React.Component {
 			case 'todo-form':
 				return <>
 					<ButtonLeft onClick={ () => setView('todos') } />
-					<TodoForm setView={ () => setView('todos') } />
+					<TodoForm onFinish={ () => setView('todos') } />
 				</>;
 			case 'search':
 				return <>
