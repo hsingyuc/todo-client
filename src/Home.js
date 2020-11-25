@@ -33,14 +33,13 @@ class Home extends React.Component {
 	}
 	
 	getBadgeStatus( priority ) {
-		if ( 'primary' === priority )  {
-			return 'error';
-		}
-		if ( 'secondary' === priority )  {
-			return 'warning';
-		}
-		if ( 'tertiary' === priority )  {
-			return 'success';
+		switch( priority ) {
+			case 'primary':
+				return 'error';
+			case 'secondary':
+				return 'warning';
+			default:
+				return 'success';
 		}
 	}
 
@@ -82,6 +81,7 @@ class Home extends React.Component {
 				</div>
 				
 				<div className='home-action'>
+					{/* Maybe update this to ActionPane */}
 					<HomeAction 
 						selectedDate = { selectedDate }
 						getTodosForDate = { date => this.getTodosForDate(date) }
