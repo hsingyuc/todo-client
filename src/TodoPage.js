@@ -6,7 +6,7 @@ import ButtonLeft from './ButtonLeft';
 import * as moment from 'moment';
 import TodoForm from './TodoForm';
 
-class Todo extends React.Component {
+class TodoPage extends React.Component {
 	constructor( props ) {
 		super( props );
 		this.state = {
@@ -63,4 +63,4 @@ const mapStateToProp = state => ({
 export default compose(
 	withRouter,
 	connect(mapStateToProp)
-)(Todo);
+)(TodoPage);

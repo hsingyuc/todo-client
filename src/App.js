@@ -11,7 +11,7 @@ import {
 import Home from './Home';
 import Todos from './Todos';
 import TodoForm from './TodoForm';
-import Todo from './Todo';
+import TodoPage from './TodoPage';
 
 class App extends React.Component {
   componentDidMount() {
@@ -39,8 +39,7 @@ class App extends React.Component {
         renders the first one that matches the current URL. */}
         <Switch>
           <Route path="/todos/:id">
-            {/* Maybe TodoPage? Todo sounds like the individual component */}
-            <Todo />
+            <TodoPage />
           </Route>
           <Route path="/todos">
             <Todos todos={ todos } />
