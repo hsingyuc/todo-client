@@ -1,8 +1,11 @@
+![App demo](http://Users/hsing/Code/todo-client
+/image/Demo photo.png)
+
 # React-Redux-Express Todo app
 This is a sample react todo app done step-by-step.
 
 ## Live demo
-Check the demo hosted on heroku XXXXXXXXXX
+Check the demo hosted on heroku
 
 ## Features
 -   Create a todo with priority, start/end date and time, and a file
@@ -14,7 +17,7 @@ Check the demo hosted on heroku XXXXXXXXXX
 
 ## Instructions
 1. clone this repository.
-	 `git clone xxxxxxx`
+	 `git clone git@github.com:hsingyuc/todo-client.git`
 2. Install dependencies. Make sure you already have [`nodejs`](https://nodejs.org/en/) & [`npm`](https://www.npmjs.com/) installed in your system. 
 	`$ npm install # or yarn`
 3. Once the dependencies are installed, you can start the application.
@@ -25,7 +28,7 @@ Check the demo hosted on heroku XXXXXXXXXX
 ## Build
 `npm run build`  builds the app for production to the  `build`  folder. It correctly bundles React in production mode and optimizes the build for the best performance.
 
-## Build with
+## Built with
  -   [create-react-app](https://github.com/facebookincubator/create-react-app/)  - For client side
 -   [AntDesign](https://ant.design/)  - For layout
 -   [Express](https://expressjs.com/)  - For server
