@@ -18,11 +18,7 @@ class TodoPage extends React.Component {
 		const { todos, match } = this.props;
 		const { isEditing } = this.state;
 		const todo = todos.find( t => t.id === parseInt(match.params.id));
-		
-		if( !todo ) {
-			return 'Loading...';
-		}
-		
+
 		return(
 			<div className='todo-container'>
 				<ButtonLeft onClick={ () => this.props.history.push('/') } />
@@ -34,7 +30,7 @@ class TodoPage extends React.Component {
 					Edit
 				</button>
 				{ !isEditing
-					? <Todo { ...todo} />
+					? ( todo ? <Todo { ...todo} /> : 'Loading...' )
 					: <TodoForm { ...todo} onFinish={ () => this.setState( {isEditing: false} ) } />
 				}
 			</div>
