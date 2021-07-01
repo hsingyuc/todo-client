@@ -45,7 +45,7 @@ class TodoForm extends React.Component {
 		this.setState( { isLoading: true, error: null } );
 		
 		! id
-			? fetch(`http://localhost:3000/todos`,{
+			? fetch(`${process.env.REACT_APP_SERVER_URL}/todos`,{
 				method: 'post',
 				headers: {
 					'Content-Type': 'application/json'
@@ -53,7 +53,6 @@ class TodoForm extends React.Component {
 				body: JSON.stringify(newTodo)
 			})
 				.then( response => {
-					console.log(response);
 					if( response.status === 200 ) {
 						return response.json();
 					} else {
@@ -68,7 +67,7 @@ class TodoForm extends React.Component {
 					addTodo( todo );
 					onFinish();
 				} )
-			: fetch(`http://localhost:3000/todos/${id}`,{
+			: fetch(`${process.env.REACT_APP_SERVER_URL}/todos/${id}`,{
 				method: 'put',
 				headers: {
 					'Content-Type': 'application/json'

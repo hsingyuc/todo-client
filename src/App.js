@@ -19,7 +19,7 @@ class App extends React.Component {
   }
 
   getPosts() {
-    fetch('http://localhost:3000/todos')
+    fetch(`${process.env.REACT_APP_SERVER_URL}/todos`)
       .then( response => response.json() )
       .then( json => this.updateTodos(json) )
   }

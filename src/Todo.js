@@ -19,7 +19,7 @@ export default class Todo extends React.PureComponent {
 					attachment
 						? <div className='todo-file'>
 							<p>Attachment</p>
-							<img src={`http://localhost:3000/uploads/${attachment}`} alt='attachment' />
+							<img src={`${process.env.REACT_APP_SERVER_URL}/uploads/${attachment}`} alt='attachment' />
 						</div>
 						: ''
 				}
