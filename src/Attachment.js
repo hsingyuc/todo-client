@@ -10,7 +10,7 @@ export default class Attachment extends React.PureComponent {
 			<Dragger 
 				name='file'
 				single
-				action='http://localhost:3000/upload'
+				action={`${process.env.REACT_APP_SERVER_URL}/upload`}
 				onChange={(uploadInfo) => {
 					const { status } = uploadInfo.file;
 					if (status === 'done') {

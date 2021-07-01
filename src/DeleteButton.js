@@ -11,7 +11,7 @@ class DeleteButton extends React.PureComponent {
 				type="button" 
 				className="btn-delete" 
 				onClick={ () => {
-					fetch(`http://localhost:3000/todos/${id}`, { method: 'delete' })
+					fetch(`${process.env.REACT_APP_SERVER_URL}/todos/${id}`, { method: 'delete' })
 						.then( () => removeTodo(id) )
 				}}
 			>
